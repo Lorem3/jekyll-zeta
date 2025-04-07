@@ -231,18 +231,12 @@ function uint8ArrayToHex(uint8Array) {
             document.getElementById("encrypted").style.display = 'block'
             // / show decrypted 
             document.getElementById("decrypted").style.display = "none"
+            document.getElementById('decryptContent').innerHTML = ':)'
     
             clearKey()
         }
 
-        document.getElementById("EncryptBtn").onclick = function(){
-            /// hide input
-            document.getElementById("encrypted").style.display = 'block'
-            // / show decrypted 
-            document.getElementById("decrypted").style.display = "none"
-    
-            clearKey()
-        }
+     
 
         document.getElementById("ClearBtn1").onclick = function(){
             localStorage.clear();
