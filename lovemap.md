@@ -52,7 +52,8 @@ tags:
 
 ---- 
 # 本文markdown 代码  
-> 引入原文件 会导致计数器 x2
+> 引入原文件 会导致计数器 x2    
+> 正常使用不需要 下面的内容
 
 
 {% include_code ../lovemap.md  %}
