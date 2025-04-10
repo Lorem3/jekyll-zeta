@@ -23,22 +23,23 @@ layout: default
 
   .lv-year-title{
     font-weight: bold;
-    font-size: 3.2em; 
+    font-size: 1.8em; 
     display: inline-block;
-    color: #eeeeee;
+    color: #aaa;
   }
   .lv-year-count{
     font-weight: bold;
     display: inline-block;
-    font-size: 2.2em;
-    color: #ccc;
+    font-size: 1.2em;
+    color: #aaa;
   }
   .lv-year-count::before{
     content: "x";
     margin-left: 1em;
     margin-right: 0.2em;
+    font-weight: 400;
     font-size: 1.5rem;
-    color: #ccc;
+    color: #aaa;
   }
 
   #loveiContainer{
@@ -50,19 +51,19 @@ layout: default
  
 
   <script >
-    function create_heatmap(heatmapid,endYear,dataObj){
+    function create_heatmap(heatmapid,endYear,dataObj,title,count){
       let container =  document.getElementById('loveiContainer')
       let divtitle = document.createElement('div')
       divtitle.className = 'lv-year'
 
       let divYear =  document.createElement('div')
       divYear.className = 'lv-year-title'
-      divYear.innerText = endYear 
+      divYear.innerText =  title || endYear 
       divtitle.appendChild(divYear)
 
       let divYearC =  document.createElement('div')
       divYearC.className = 'lv-year-count'
-      divYearC.innerText = '' + dataObj.allYear[endYear]
+      divYearC.innerText = count  || ('' + dataObj.allYear[endYear])
       divtitle.appendChild(divYearC)
 
 
@@ -193,6 +194,16 @@ layout: default
     let allYear = {}
     let data = {allYear:allYear};
     
+
+
+
+   let Recent365Count = 0;
+   let nowDate = new Date
+   let Recent365YMD =  `${nowDate.getFullYear()-1}-${(nowDate.getMonth() + 1).toString().padStart(2, '0')}-${nowDate.getDate().toString().padStart(2, '0')}`
+
+   console.log(Recent365YMD)
+
+
     let arrCodes = document.querySelectorAll('pre > code')
     if(!arrCodes ||  arrCodes.length == 0) return
     if(arrCodes.length > 0){
@@ -200,8 +211,17 @@ layout: default
         var strAll = code.textContent
         strAll.split("\n").forEach(function(str){
           let item = getDataFromSignleLine(str)
-          console.log('xxxx',item,str)
           fillDataObj(data,item)
+          if(item  ){
+            if(item.date >= Recent365YMD){
+              
+              Recent365Count ++
+            }
+
+            console.log(item.date,Recent365YMD,item.date >= Recent365YMD ? "XXXXXXXX": "-")
+            
+            
+          }
         })
         
       })
@@ -209,8 +229,7 @@ layout: default
 
     let allYearArr = Object.keys(allYear).sort().reverse()
 
-    console.log(allYear)
-    console.log(allYearArr)
+    create_heatmap('lmpRecent365'   ,'',data ,"Recent 1 Year",Recent365Count)
     for(let i = 0; i < allYearArr.length; i++){
       let y = allYearArr[i]
       create_heatmap('lmp' + y ,y,data )
