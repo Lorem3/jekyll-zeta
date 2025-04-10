@@ -7,7 +7,7 @@ $heatFont:Georgia,"Nimbus Roman No9 L","Songti SC",STSong,"AR PL New Sung","AR P
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: auto 1fr;
-  max-width: 640px;
+  // max-width: 740px;
 }
 
 .heatmap-title{
@@ -100,16 +100,52 @@ $heatFont:Georgia,"Nimbus Roman No9 L","Songti SC",STSong,"AR PL New Sung","AR P
   background-color: #93d5dc;
 }
 
-.hm-check{
-  background-color: #40c463bb;
+.lv-check-nodata{
+  background-color: #f0c9cf;
+}
+
+
+.hm-checkBase{
   position: relative;
+  background-color: #40c46377;
   cursor: pointer;
+}
+.hm-check{
+  
+  @extend .hm-checkBase;
+  background-color: #40c46377;
+  
 }
 
 .hm-check2{
-  background-color: #40c463ff;
-  position: relative;
+  @extend .hm-checkBase;
+  background-color: #40c463bb;
+
 }
+
+.hm-check3{
+  @extend .hm-checkBase;
+  background-color: #40c463ff;
+}
+
+.lv-check{
+  
+  @extend .hm-checkBase;
+  background-color: #ef82a0aa;
+  
+}
+
+.lv-check2{
+  @extend .hm-checkBase;
+  background-color: #e77c8ecc;
+
+}
+
+.lv-check3{
+  @extend .hm-checkBase;
+  background-color: #ef82a0;
+}
+
 
 .hm-check-no-a{
   background-color: #edebf0;;

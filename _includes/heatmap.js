@@ -1,4 +1,4 @@
-function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_showWeek,_allyearurl) {
+function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_showWeek,_allyearurl,dataSourceObj,checkPrefix) {
   
   const WeeKStart = parseInt(WeeKStartStr)
 
@@ -17,6 +17,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
   }
 
   const todayYmd = date2ymd(new Date())
+  // 指定日期，可以是年2014  或者 年月 2012-12-03
   const strictMod =  endYear && endYear.length == 4;
   const maxDateYmd = `${endYear}-12-31`
   const dateEnd =
@@ -36,8 +37,14 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
   let queue  = window._y_queue || []
   window._y_queue = queue;
  
+ 
 
   function getAllYearCfg(){
+     /// 如果直接有数据，那么组装成
+  if (dataSourceObj && dataSourceObj.allYear) {
+    return Promise.resolve(dataSourceObj.allYear)
+  }
+    
     
     
     if (GDATA['_allYear']) {
@@ -132,7 +139,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
           const element = data[key];
           if (Array.isArray(element)) {
             element.forEach((e) => {
-              if (e.date && e.title && e.url) {
+              if (e.date && e.title) {
                 let arr = Map[e.date];
                 if (!arr) {
                   arr = [];
@@ -204,6 +211,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
         }
         else{
           
+          const checkClassPrefix = checkPrefix || 'hm'
           const nobg =
           parseInt(dateKeyYmd.substring(5, 7)) % 2 == 1
             ? "hm-check-no-b"
@@ -211,9 +219,11 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
         dayCell.classList = `heatmap-day-cell ${
           !arrPostInOneDay
             ? nobg
-            : arrPostInOneDay.length > 1
-            ? "hm-check2"
-            : "hm-check"
+            : arrPostInOneDay.length > 2
+            ?  (checkClassPrefix + "-check3")
+            : arrPostInOneDay.length == 2 ?
+             (checkClassPrefix + "-check2") 
+            : checkClassPrefix + "-check"
         }`;
 
         if (arrPostInOneDay && arrPostInOneDay.length > 0) {
@@ -222,7 +232,8 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
 
           if (isDirectly) {
             let lnk = document.createElement("a");
-            lnk.href = arrPostInOneDay[0].url;
+
+            lnk.href = arrPostInOneDay[0].url ? arrPostInOneDay[0].url : 'javascript:void(0);';
             dayCell.appendChild(lnk);
           }
 
@@ -231,7 +242,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
           arrPostInOneDay.forEach((element) => {
             let lnk = document.createElement("a");
             lnk.className = "hm-tiplink";
-            lnk.href = element.url;
+            lnk.href = element.url || 'javascript:void(0);'
             tip.appendChild(lnk);
 
             let t = document.createElement("span");
@@ -272,7 +283,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
     function getYearData(year) {
       year = '' + year
 
-    
+      if (dataSourceObj ) {return Promise.resolve(dataSourceObj[year])}
       if(GDATA[year]){
 
         return GDATA[year]
@@ -364,7 +375,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
         }
 
         let m = document.createElement("span");
-        m.classList = `heatmap-day-cell hm-check-nodata`;
+        m.classList = `heatmap-day-cell ${checkPrefix || "hm"}-check-nodata`;
         dayEle.appendChild(m);
       }
     }
