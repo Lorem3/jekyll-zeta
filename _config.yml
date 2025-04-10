@@ -51,8 +51,8 @@ theme_config:
         - /tags/ 
     - title: About
       url: /about.html
-    - title: lmap
-      url: /lovemap.html
+    - title: Happy Life
+      url: /happylife.html
 
   # 
   # forbid_cache_password:  true

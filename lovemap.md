@@ -3,8 +3,8 @@ layout: lovemap
 permalink: happylife.html
 title: 项少龙的幸福生活 psw:12345
 tags:
-    - happy_life
-    - encrypt1
+    - happy_life     #  password:sex
+    - encrypt1       #  passowrd: 12345
 --- 
  
 ```  
