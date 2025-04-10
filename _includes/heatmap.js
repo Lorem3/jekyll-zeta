@@ -139,7 +139,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
           const element = data[key];
           if (Array.isArray(element)) {
             element.forEach((e) => {
-              if (e.date && e.title) {
+              if (e.date ) {
                 let arr = Map[e.date];
                 if (!arr) {
                   arr = [];
