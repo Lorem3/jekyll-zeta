@@ -209,8 +209,14 @@ function uint8ArrayToHex(uint8Array) {
     
                     window.dispatchEvent(loadevent)
                     window.dispatchEvent(DOMContentLoaded_event)
+
+                    const DECFUN = window['_after_dec_fun']
+                    
+                    if (DECFUN && typeof DECFUN == 'function') {
+                        DECFUN()
+                    }
     
-                }, 500);
+                }, 100);
             } catch (error) {
                 console.log(error)
                 // alert("wrong password.")
@@ -234,6 +240,11 @@ function uint8ArrayToHex(uint8Array) {
             document.getElementById('decryptContent').innerHTML = ':)'
     
             clearKey()
+
+            const ENCFUN = window['_after_enc_fun']
+            if (ENCFUN && typeof ENCFUN == 'function') {
+                ENCFUN()
+            }
         }
 
      

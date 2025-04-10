@@ -40,15 +40,17 @@ layout: default
     font-size: 1.5rem;
     color: #ccc;
   }
+
+  #loveiContainer{
+    margin-bottom: 2em;
+  }
+
 </style>
 
  
 
   <script >
     function create_heatmap(heatmapid,endYear,dataObj){
-
-
-
       let container =  document.getElementById('loveiContainer')
       let divtitle = document.createElement('div')
       divtitle.className = 'lv-year'
@@ -123,21 +125,34 @@ layout: default
 
   
  <script> 
+ (function(){
     
    /// 2025-01-01 描述，日期格式yyyy-mm-dd，空格后跟上 描述
    function getDataFromSignleLine(str0){
       let str = str0.trim()
       if(!str) return null
       var arr = str.split(" ")
-      var date = arr[0]
-      if(date ){
-        let ymd = date.split("-")
+      var date0 = arr[0]
+      let date = ''
+      if(date0 ){
+        let ymd = date0.split("-")
         if(ymd.length == 3){
           let year =  ymd[0]
           let month = ymd[1]
           let day =   ymd[2]
-          date = year + "-" + month.padStart(2, '0') + "-" + day.padStart(2, '0')
+
+          let nY = Number(year)
+          let nM = Number(month)
+          let nD = Number(month)
+          if (isNaN(nY) || isNaN(nD) || isNaN(nM) || nY < 1900 || nY > 2100 || nM < 1 || nM > 12 || nD < 1 || nD > 31) {
+            console.error("Invalid date format: " + str0)
+            return null 
+          }
+        date = year + "-" + month.padStart(2, '0') + "-" + day.padStart(2, '0')
       }
+    }
+      else{
+        return null
       }
 
       if (!date) {
@@ -172,18 +187,20 @@ layout: default
     arr.push(item)
 
    }
-  !function(){
+   function initData(){
     var endYear = "{{ include.endYear }}"
     
     let allYear = {}
     let data = {allYear:allYear};
     
     let arrCodes = document.querySelectorAll('pre > code')
+    if(!arrCodes ||  arrCodes.length == 0) return
     if(arrCodes.length > 0){
       arrCodes.forEach(function(code){
         var strAll = code.textContent
         strAll.split("\n").forEach(function(str){
           let item = getDataFromSignleLine(str)
+          console.log('xxxx',item,str)
           fillDataObj(data,item)
         })
         
@@ -202,5 +219,26 @@ layout: default
     } 
     
     
-  }()
+  };
+
+  initData()
+
+  window['_after_dec_fun'] = function(){
+    let con = document.getElementById('loveiContainer')
+    if(!con){
+      let decryptContent = document.getElementById('decryptContent') 
+      if(!decryptContent) return
+      con = document.createElement('div')
+      con.id = 'loveiContainer'
+      decryptContent.insertBefore(con,decryptContent.firstChild)
+      
+    }
+
+    initData()
+  }
+  window['_after_enc_fun'] = function (){
+    document.getElementById('loveiContainer').innerHTML = ''
+  }
+})();
+  
   </script>
