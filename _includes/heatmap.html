@@ -38,6 +38,8 @@
     var _showWeek =  '{{ HeatMapShowWeek | default: "Sun Mon Tue Wed Thu Fri Sat" }}';
     var _allyearurl =  '{{ "assets/dyn/allyear.json" | relative_url }}';
     {% include heatmap.js  %}
+
+    __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_showWeek,_allyearurl)
   }
 </script>
 

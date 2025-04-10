@@ -1,4 +1,4 @@
-;!(function () {
+function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_showWeek,_allyearurl) {
   
   const WeeKStart = parseInt(WeeKStartStr)
 
@@ -372,4 +372,4 @@
     Frag.appendChild(dayEle);
     Father.append(Frag);
   })();
-})();
+};
