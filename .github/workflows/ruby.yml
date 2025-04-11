@@ -62,10 +62,10 @@ jobs:
 
 
 
-    # - name: Upload artifact
-    #   uses: actions/upload-pages-artifact@v1
-    #   with:
-    #     path: ./_site
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: ./_site
     
     - name: build for branch
       shell: bash
