@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" /><title>项少龙的幸福生活 psw:12345</title><link rel="shortcut icon" type="image/x-icon" href="/logo.png" /><link rel="stylesheet" href="/assets/css/left.css" />
+  
+
+  <script>
+    setTimeout(() => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '//no-style.kr7y.workers.dev/zeta.css?5691b50c30';
+      link.type = 'text/css';
+      document.head.appendChild(link);
+    }, 500);
+  </script>
+</head><body a="auto">
+    <main class="page-content" aria-label="Content"><header><div class="sidebar">
+
+<div class="sidecontent">
+<div class="avatar-title">
+  <a href="/"  ><img src="/assets/image/avatar.png"  class="avatar"/> </a>
+
+  <a href="/" class="nav-title"  > jekyll-zeta! </a>
+</div>
+
+
+
+<nav>
+  <ul class="navul">
+      <li class="navli">
+
+      <a href="/" class="nav">Posts</a></li>
+      <li class="navli">
+
+      <a href="/archive.html" class="nav">Achive</a></li>
+      <li class="navli">
+
+      <a href="/tags.html" class="nav">Tags</a></li>
+      <li class="navli">
+
+      <a href="/about.html" class="nav">About</a></li>
+      <li class="navli curNav">
+
+      <a href="/happylife.html" class="nav">Happy Life</a></li></ul>
+</nav>
+
+
+</div>
+
+
+</div></header>
+<section class="rightsidecontent">
+<div class="w">
+    
+    <h2>项少龙的幸福生活 psw:12345</h2><time datetime=""></time> &nbsp; &nbsp;<a href="/tags/happy_life.html" class="tag"><text><nobr>#happy_life</nobr></text>&nbsp;</a><a href="/tags/encrypt1.html" class="tag"><text><nobr>#encrypt1</nobr></text>&nbsp;</a><br/>
+
+
+
+<style>
+  .lv-year{
+    margin-top: 2.5rem;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .lv-year-title{
+    font-weight: bold;
+    font-size: 1.8em; 
+    display: inline-block;
+    color: #aaa;
+    
+  }
+  .lv-year-count{
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1.2em;
+    color: #aaa;
+    
+  }
+  .lv-year-count::before{
+    content: "x";
+    margin-left: 1em;
+    margin-right: 0.2em;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #aaa;
+  }
+
+  #loveiContainer{
+    margin-bottom: 2em;
+  }
+
+</style>
+
+ 
+
+  <script >
+    function create_heatmap(heatmapid,endYear,dataObj,title,count){
+      let container =  document.getElementById('loveiContainer')
+      let divtitle = document.createElement('div')
+      divtitle.className = 'lv-year'
+
+      let divYear =  document.createElement('div')
+      divYear.className = 'lv-year-title'
+      divYear.innerText =  title || endYear 
+      divtitle.appendChild(divYear)
+
+      let divYearC =  document.createElement('div')
+      divYearC.className = 'lv-year-count'
+      divYearC.innerText = count  || ('' + dataObj.allYear[endYear])
+      divtitle.appendChild(divYearC)
+
+
+
+      container.appendChild(divtitle) 
+      let div = document.createElement('div')
+      div.className = 'heatmap'
+      div.id = heatmapid
+
+      container.appendChild(div)
+
+      setTimeout(() => {
+        create_heatmap0( heatmapid,endYear,dataObj)
+      }, 1);
+    }
+    function create_heatmap0(heatmapid,endYear,dataObj){const WeeKStartStr = "0" ;//  0 sunday 1 monday 2. tuesday ...
+
+    const heatMapLoadCount = 9;
+    var _MonthStr =  'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec';
+    var _showWeek =  'Sun Mon Tue Wed Thu Fri Sat';
+    var _allyearurl =  '/assets/dyn/allyear.json';
+    function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_showWeek,_allyearurl,dataSourceObj,checkPrefix) {
+  
+  const WeeKStart = parseInt(WeeKStartStr)
+
+
+  var GDATA = window._G_DATA;
+  if (!GDATA) {
+    GDATA = {}
+    window._G_DATA = GDATA
+  }
+
+
+  function date2ymd(t) {
+    let m = t.getMonth() + 1;
+    let d = t.getDate();
+    return `${t.getFullYear()}-${m < 10 ? "0" + m : m}-${d < 10 ? "0" + d : d}`;
+  }
+
+  const todayYmd = date2ymd(new Date())
+  // 指定日期，可以是年2014  或者 年月 2012-12-03
+
+  var  maxDateYmd = `${endYear}-12-31`
+  if (endYear &&  endYear.length == 4) {
+     maxDateYmd = `${endYear}-12-31`  
+  }else if(endYear && endYear.length == 10) { /// 
+    maxDateYmd = endYear
+  }else if(!endYear){
+    maxDateYmd = todayYmd
+    
+  }
+  endYear = maxDateYmd.substring(0, 4)
+
+  const minYmd = `${Number(endYear) - 1}${maxDateYmd.substring(4)}`
+  
+
+  console.log('maxDateYmd',maxDateYmd)
+  
+  const dateEnd =
+    endYear && endYear.length == 4 ? new Date(maxDateYmd) : new Date();
+
+  const endStamp = dateEnd.getTime();
+  const dayEleId = Math.random().toString(16).substring(2);
+  let arr = _allyearurl.split("/");
+  arr.pop();
+  const jsonUrlBase = arr.join("/");
+
+  const nLastColumnCount = (dateEnd.getDay() -  WeeKStart + 7) % 7 + 1
+  const ColumnsCount = 53;
+  const RowCount = 7;
+  const DayCount = (ColumnsCount - 1) * RowCount + nLastColumnCount;
+
+  let queue  = window._y_queue || []
+  window._y_queue = queue;
+ 
+ 
+
+  function getAllYearCfg(){
+     /// 如果直接有数据，那么组装成
+  if (dataSourceObj && dataSourceObj.allYear) {
+    return Promise.resolve(dataSourceObj.allYear)
+  }
+    
+    
+    
+    if (GDATA['_allYear']) {
+      return GDATA['_allYear'];
+    }
+
+    if (window._isFetchAllYearData == 1) {
+      return new Promise(r=>{
+        queue.push(r);
+      })
+    }
+
+    
+    window._isFetchAllYearData = 1;
+    return fetch(_allyearurl)
+      .then((r) => r.json())
+      .then(d => { 
+        window._isFetchAllYearData = 0;
+        if (queue.length) {
+          queue.forEach(calback=>{calback(d)});
+          queue.length = 0;
+        }
+        GDATA['_allYear'] = d ;return d ;})
+  }
+  !(function fillData() {
+    let year = "" + dateEnd.getFullYear();
+    let preYear = "" + (year - 1);
+    getAllYearCfg()
+      .then((d) => {
+        let yearCfg = d;
+        let arr = [];
+        if (yearCfg[year]) {
+          arr.push(getYearData(year));
+        }
+
+        if (yearCfg[preYear]) {
+          arr.push(getYearData(preYear));
+        }
+        Promise.all(arr).then((alldata) => {
+          let combineData = {};
+          let d1 = alldata[0];
+          let d2 = alldata[1];
+
+          for (const key in d1) {
+            if (Object.prototype.hasOwnProperty.call(d1, key)) {
+              const element = d1[key];
+              let keyNew = "K1-" + key;
+              combineData[keyNew] = element;
+            }
+          }
+
+          for (const key in d2) {
+            if (Object.prototype.hasOwnProperty.call(d2, key)) {
+              const element = d2[key];
+              let keyNew = "K2-" + key;
+              combineData[keyNew] = element;
+            }
+          }
+
+          updateCell(combineData);
+        });
+      });
+
+    function getIndex(ymd) {
+      return (
+        DayCount -
+        Math.floor((endStamp - new Date(ymd).getTime()) / (24 * 3600000)) -
+        1
+      );
+    }
+
+    function idx2Ymd(idx) {
+      let t = new Date(endStamp - (DayCount - 1 - idx) * 3600000 * 24);
+      let m = t.getMonth() + 1;
+      let d = t.getDate();
+      return `${t.getFullYear()}-${m < 10 ? "0" + m : m}-${
+        d < 10 ? "0" + d : d
+      }`;
+    }
+
+    function updateCell(data) {
+      if (!data) return;
+
+
+      let daysEle = document.getElementById(dayEleId);
+      let dayCells = daysEle.childNodes;
+
+      let Map = {};
+
+      for (const key in data) {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+          const element = data[key];
+          if (Array.isArray(element)) {
+            element.forEach((e) => {
+              if (e.date ) {
+                let arr = Map[e.date];
+                if (!arr) {
+                  arr = [];
+                  Map[e.date] = arr;
+                }
+                arr.push(e);
+              }
+            });
+          }
+        }
+      }
+
+      let ymdArr = [];
+
+      for (const dateKeyYmd in Map) {
+        if (Object.prototype.hasOwnProperty.call(Map, dateKeyYmd)) {
+          ymdArr.push(dateKeyYmd);
+        }
+      }
+
+      var G_idxOfDay = DayCount - 1;
+
+      function shuffle(array) {
+        let currentIndex = array.length;
+
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+          // Pick a remaining element...
+          let randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+
+          // And swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex],
+            array[currentIndex],
+          ];
+        }
+      }
+
+      const SEQ = new Array(DayCount);
+      let tmp = DayCount;
+      while (tmp-- > 0) {
+        SEQ[tmp] = tmp;
+      }
+
+      shuffle(SEQ);
+
+      function update1Day() {
+        if (G_idxOfDay < 0) {
+          return;
+        }
+        const idxOfDay = SEQ[G_idxOfDay--];
+        let dateKeyYmd = idx2Ymd(idxOfDay);
+        let arrPostInOneDay = Map[dateKeyYmd];
+
+        let hideblock = false
+        if (minYmd) {
+          hideblock = dateKeyYmd < minYmd;
+        }
+
+        let isFuture = dateKeyYmd > todayYmd;
+
+        const dayCell = dayCells[idxOfDay];
+        if (hideblock) {
+          dayCell.classList = 'heatmap-day-cell hm-check-notyet'
+        }else if(isFuture){
+          dayCell.classList = parseInt(dateKeyYmd.substring(5, 7)) % 2 == 1 ? 'heatmap-day-cell hm-check-future-b' : 'heatmap-day-cell hm-check-future-a'
+        }
+        else{
+          
+          const checkClassPrefix = checkPrefix || 'hm'
+          const nobg =
+          parseInt(dateKeyYmd.substring(5, 7)) % 2 == 1
+            ? "hm-check-no-b"
+            : "hm-check-no-a";
+        dayCell.classList = `heatmap-day-cell ${
+          !arrPostInOneDay
+            ? nobg
+            : arrPostInOneDay.length > 2
+            ?  (checkClassPrefix + "-check3")
+            : arrPostInOneDay.length == 2 ?
+             (checkClassPrefix + "-check2") 
+            : checkClassPrefix + "-check"
+        }`;
+
+        if (arrPostInOneDay && arrPostInOneDay.length > 0) {
+          let isDirectly = arrPostInOneDay.length == 1;
+          let tip = document.createElement("div");
+
+          if (isDirectly) {
+            let lnk = document.createElement("a");
+
+            lnk.href = arrPostInOneDay[0].url ? arrPostInOneDay[0].url : 'javascript:void(0);';
+            dayCell.appendChild(lnk);
+          }
+
+          tip.className = "hm-tip";
+          let desc = "";
+          arrPostInOneDay.forEach((element) => {
+            let lnk = document.createElement("a");
+            lnk.className = "hm-tiplink";
+            lnk.href = element.url || 'javascript:void(0);'
+            tip.appendChild(lnk);
+
+            let t = document.createElement("span");
+            t.className = "hm-date";
+            t.innerText = dateKeyYmd.substring(5);
+            lnk.appendChild(t);
+
+            let t2 = document.createElement("span");
+            t2.className = "hm-title";
+            t2.innerText = element.title;
+            lnk.appendChild(t2);
+          });
+          dayCell.appendChild(tip);
+        }
+        }
+
+        
+      }
+
+      function updateMultiDays() {
+        let day = heatMapLoadCount;
+        if (!day || day <= 0) {
+          day = 8;
+        }
+        while (day--) {
+          update1Day();
+        }
+
+        if (G_idxOfDay >= 0) {
+          requestAnimationFrame(updateMultiDays);
+        }
+      }
+      requestAnimationFrame(updateMultiDays);
+
+      return;
+    }
+
+    function getYearData(year) {
+      year = '' + year
+
+      if (dataSourceObj ) {return Promise.resolve(dataSourceObj[year])}
+      if(GDATA[year]){
+
+        return GDATA[year]
+      }
+
+      let queueFlgKey = '_singleyearFlg' + year
+      let queueArrKey = '_singleyearQueue' + year
+      if (GDATA[queueFlgKey] == 1) {
+        // console.log('put in queue',year,Math.random())
+        let arrQueue = GDATA[queueArrKey]
+        if (!arrQueue) {
+          arrQueue = []
+          GDATA[queueArrKey] = arrQueue;
+        }
+        
+        return  new Promise(r=>{
+          arrQueue.push(r);
+        });
+      }
+
+
+      GDATA[queueFlgKey] = 1;
+      // console.log('RealQuery',year,Math.random())
+      return fetch(`${jsonUrlBase}/${year}.json`)
+        .then((r) => r.json())
+        .then(d=>{
+          GDATA[queueFlgKey] = 0 ;GDATA[year] = d; 
+          let queue = GDATA[queueArrKey];
+          // console.log('queryFinish',year)
+          if(queue && queue.length){
+            queue.forEach(cb=>{
+              // console.log('queryFinishQueue',year,queue.length,Math.random());
+              cb(d);})
+            queue.length = 0;
+            GDATA[queueArrKey] = undefined
+          }
+
+          return d})
+        .catch((e) => {
+          return null;
+        });
+    }
+  })();
+  (function initMap() {
+    let Father = document.getElementById(heatmapid);
+
+    const Frag = document.createDocumentFragment();
+
+    const monthEle = document.createElement("div");
+    monthEle.className = "heatmap-month";
+    Frag.appendChild(monthEle);
+    const monthStr = _MonthStr.split(" ");
+
+    let nowM = dateEnd.getMonth();
+    let nowWeekIdx = nLastColumnCount - 1;
+
+    for (let i = 0; i < monthStr.length; i++) {
+      let m = document.createElement("span");
+      m.className = "heatmap-month-cell";
+      m.innerHTML = `${monthStr[(i + nowM + 1) % 12]}`;
+      monthEle.appendChild(m);
+    }
+
+    const weekEle = document.createElement("div");
+    weekEle.className = "heatmap-week";
+    const WeekStr = _showWeek.split(" ");
+
+    for (let i = 0; i < WeekStr.length; i++) {
+      const idx = (i + WeeKStart) % 7
+      let m = document.createElement("div");
+      m.className = "heatmap-week-cell";
+      m.innerHTML = i % 2  ?  `<span>${WeekStr[idx]}</span>` : ''
+      weekEle.appendChild(m);
+    }
+
+    Frag.appendChild(weekEle);
+
+    const dayEle = document.createElement("div");
+
+    dayEle.className = "heatmap-day";
+    dayEle.id = dayEleId;
+
+    // console.log(nowWeekIdx, firstDateDayDiff);
+
+    for (let c = 0; c < ColumnsCount; c++) {
+      for (let r = 0; r < RowCount; r++) {
+        if (r > nowWeekIdx && c == ColumnsCount - 1) {
+          break;
+        }
+
+        let m = document.createElement("span");
+        m.classList = `heatmap-day-cell ${checkPrefix || "hm"}-check-nodata`;
+        dayEle.appendChild(m);
+      }
+    }
+
+    Frag.appendChild(dayEle);
+    Father.append(Frag);
+  })();
+};
+
+
+
+    __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_showWeek,_allyearurl,dataObj,'lv')
+    }
+
+
+
+  </script>
+   
+  
+
+  
+  
+   <article><style>
+.errPsw{
+    animation: shake 0.4s cubic-bezier(0.25, 1.5, 0.5, 1);
+    border:solid 2px #f0ada0;    
+    border-radius: 4px;
+}
+    @keyframes shake {
+        0% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-15px);
+    }
+    40% {
+        transform: translateX(10px);
+    }
+    60% {
+        transform: translateX(-7px);
+    }
+    80% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+    }
+</style>
+
+
+<div id="encrypted">
+    <h3> Content is Encryped :) </h3>
+   
+    <input style="width:100%; " type="password" id="passwordinput" placeholder="输入密码"></input>
+    <p>
+        <input type="button" value= "Decrypt" id="DecryptBtn"/>
+        <input type="button" value= "Clear password cache" id="ClearBtn1"/>
+    
+    </div>
+    
+    <div id="decrypted"  style = "display:none">
+        <p>
+        <div>
+           
+            <input type="button" value= "Encrypt" id="EncryptBtn"/>
+
+            <input type="button" value= "Clear password cache" id="ClearBtn2"/>
+           
+        </div>
+        <div id = 'decryptContent'>
+        </div>
+    </div>
+    <script>
+        var exports = exports || {} 
+    </script>
+    <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.2/js/base64js.js"></script>
+    <script>
+        
+function uint8ArrayToHex(uint8Array) {
+  return Array.from(uint8Array)
+    .map(byte => byte.toString(16).padStart(2, '0'))  // 转换每个字节为2位16进制
+    .join('');  // 连接成字符串
+}
+    const contentEnc = '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';
+    
+        !function(){
+
+            const substl = crypto.subtle
+            const preFix = 'c0751cfbc49a79481bf5e11dad3b232de';
+            const encid = preFix
+            const encryptedContent = contentEnc;
+            const base64str = encryptedContent.substring(3)
+            const bfMsg = base64js.decode(base64str)
+            const bfIv = bfMsg.subarray(0,12)
+            const bfCipher = bfMsg.subarray(12)
+            
+            async function genKey(psw){
+                var keyRaw = new TextEncoder().encode(psw)
+                var key = await substl.importKey('raw',keyRaw,'PBKDF2',false,["deriveBits"])
+                const salt = 'this is a salt string 20221019'
+                let pbkdf2  = {
+                    name:"PBKDF2",hash: "SHA-256",iterations: 12345,salt: new TextEncoder().encode(salt)
+                }
+                return  await substl.deriveBits(pbkdf2,key,256);
+            }
+
+        async function decryptRaw(bf,key,outV){
+            if(bf.length < 8){
+                if(outV){
+                     outV.count = bf.length
+                }
+                throw 'err'
+            }
+            let count = 0;
+            for (let i  = 0; i  < 4; i ++) {
+                count |= ((bf[i] ^ bf[i + 4] ^ i) << ((3 - i) * 8))
+            }
+
+            if(outV){
+                outV.count = count
+            }
+            if (bf.length < count) {
+                return
+            }
+
+            let bfIv = bf.slice(4,20)
+            let bfCipher = bf.slice(20,count )
+   
+            var aeskey = {
+                name:"AES-CTR",
+            }
+            var keyObj = await substl.importKey('raw',key,aeskey,false,['decrypt'])
+            var aesDec= {name: "AES-CTR",counter:bfIv,length:64};
+            try{
+                let bfDec  = await substl.decrypt(aesDec,keyObj,bfCipher)
+                return  new  Uint8Array(bfDec)
+            }catch (error) {
+                throw error
+            }
+             
+        }
+ 
+        async function decryptBase64Msg(msg64,key){
+            const base64str = msg64;
+            const bfMsg = base64js.decode(base64str)
+            return await decryptRaw(bfMsg,key)
+
+        }
+        async function checkKey(key){
+            const keyData  = "212IpdtcipJHU4+xkq3ep2cmmPJXDYphy9NoGpijkKcQS69tnY8oNklJnqXg2zv7b+UJk7Hnv4yx5r27mSxdA2r8HkxpcgK7xXBXgs70KUcC1YEZTkxzFC1SlfwxNEHLXcRMUvxG/Lg=";
+             
+            const arrTest = 'exLdDNu4ryRiH07HaM6D/o8f4kJMYrwGP+BbcXJ5vyAbGMtxba1K4sJwX5MYdvvUdclraktyOb2xwP6h4Weu.vw3KSr8MyCEawaUqJKvUTdNlNnCWKFaMRTHtgwvMYXhdKPdltD/Y4dII7FVv5PioZ9bWlee6hcTdrpX6/IdDCCPpLcYkgvh/iqiNXYLFw9JRW1w9HLMlM4ewHYspTeNZuHMKi3W0Ij0='.split('.');
+            const testData = arrTest[0];
+            const testDataEnc = arrTest[1];
+            const bfTestData = base64js.decode(testDataEnc)
+
+
+            const bfKeyData = base64js.decode(keyData)
+            let keyBf = null
+            let C  = 0;
+            let sum = 0;
+            while (C ++ < 400 ) {
+                if (sum >= bfKeyData.length ) {
+                    break
+                }
+                let bfSub = bfKeyData.slice(sum)
+                
+                try {
+                    let outV = {count:0}
+                    let d = await decryptRaw(bfSub,key,outV)
+
+                    sum += outV.count
+                    if (d) {
+                        let dec = await decryptRaw(bfTestData,d)
+                        let s =  new TextDecoder().decode(dec) 
+                        if(s == testData){
+                            keyBf = d;
+                            break;
+                        }
+                    }else{
+                       
+                    }
+                    
+                    
+                } catch (error) {
+                     
+                }
+            }
+             
+            return keyBf
+        }
+ 
+        async function decrypt (key0,isCached){
+            // const key = Uint8Array([...]); // 32 bytes key
+            var key  = ''
+            if(isCached){
+                key = readKey()
+            }
+            else{
+                var keyS = preFix + key0 +  preFix
+                key = await genKey(keyS)
+            }
+            if (key.length == 0) {
+                return
+            }
+            try {
+                let keyBf = await checkKey(key)
+                if(!keyBf){
+                    throw 'error psw'
+                }
+                var bfDec  = await decryptBase64Msg(contentEnc,keyBf)
+                var plain = new TextDecoder().decode(bfDec);
+                setKey(key)
+                document.getElementById("encrypted").style.display = 'none'
+                // / show decrypted 
+    
+                document.getElementById("decrypted").style.display = 'block'
+                document.getElementById("decryptContent").innerHTML = plain
+    
+                setTimeout(function(){
+                    var loadevent = document.createEvent("Event")
+                    loadevent.initEvent("load", true, true)
+    
+                    var DOMContentLoaded_event = document.createEvent("Event")
+                    DOMContentLoaded_event.initEvent("DOMContentLoaded", true, true)
+    
+                    window.dispatchEvent(loadevent)
+                    window.dispatchEvent(DOMContentLoaded_event)
+
+                    const DECFUN = window['_after_dec_fun']
+                    
+                    if (DECFUN && typeof DECFUN == 'function') {
+                        DECFUN()
+                    }
+    
+                }, 100);
+            } catch (error) {
+                console.log(error)
+                // alert("wrong password.")
+                document.getElementById('passwordinput').classList.add('errPsw');
+                setTimeout(() => {
+                    document.getElementById('passwordinput').classList.remove('errPsw')
+                }, 500);
+            }
+        }
+        
+        document.getElementById("DecryptBtn").onclick = function(){
+            var key = document.getElementById("passwordinput").value
+            decrypt(key);        
+        }
+    
+        document.getElementById("EncryptBtn").onclick = function(){
+            /// hide input
+            document.getElementById("encrypted").style.display = 'block'
+            // / show decrypted 
+            document.getElementById("decrypted").style.display = "none"
+            document.getElementById('decryptContent').innerHTML = ':)'
+    
+            clearKey()
+
+            const ENCFUN = window['_after_enc_fun']
+            if (ENCFUN && typeof ENCFUN == 'function') {
+                ENCFUN()
+            }
+        }
+
+     
+
+        document.getElementById("ClearBtn1").onclick = function(){
+            localStorage.clear();
+            document.getElementById('passwordinput').value = ''
+        }
+        document.getElementById("ClearBtn2").onclick = function(){
+            localStorage.clear();
+        }
+
+        
+
+        
+    
+        
+            function readKey(){
+                var key = encid;
+                var v = localStorage.getItem(key)
+                if (v) {
+                    return base64js.decode(v)
+                }else{
+                    return null
+                }
+            }
+            function setKey(value){
+                var key = encid
+                var arr = new Uint8Array(value)
+                var b64 = base64js.encode(arr)
+                return localStorage.setItem(key,b64)
+            }
+            function clearKey() {
+                var key = encid
+                localStorage.removeItem(key)
+            }
+            var cachekey = readKey()
+            if(cachekey){
+                decrypt(cachekey,true)
+            }
+
+        
+        
+        
+ 
+    }()
+    
+    
+    </script>
+    </article>
+
+
+  
+ <script> 
+ (function(){
+    
+   /// 2025-01-01 描述，日期格式yyyy-mm-dd，空格后跟上 描述
+   function getDataFromSignleLine(str0){
+      let str = str0.trim()
+      if(!str) return null
+      var arr = str.split(" ")
+      var date0 = arr[0]
+      let date = ''
+      if(date0 ){
+        let ymd = date0.split("-")
+        if(ymd.length == 3){
+          let year =  ymd[0]
+          let month = ymd[1]
+          let day =   ymd[2]
+
+          let nY = Number(year)
+          let nM = Number(month)
+          let nD = Number(month)
+          if (isNaN(nY) || isNaN(nD) || isNaN(nM) || nY < 1900 || nY > 2100 || nM < 1 || nM > 12 || nD < 1 || nD > 31) {
+            return null 
+          }
+        date = year + "-" + month.padStart(2, '0') + "-" + day.padStart(2, '0')
+      }
+    }
+      else{
+        return null
+      }
+
+      if (!date) {
+        console.error("Invalid date format: " + str0)
+        return null
+      }
+      var title = ""
+      if(arr.length > 1){
+        title = arr.slice(1).join(" ")
+      }
+      return {date:date,title:title}
+   }
+
+   function fillDataObj(data,item){
+    if(!item) return
+    let y = item.date.substring(0,4);
+    let m = item.date.substring(5,7);
+    let c = data.allYear[y]; 
+    data.allYear[y] = c ? c + 1 : 1;
+    
+    let yObj = data[y]
+    if(!yObj){
+      yObj = {}
+      data[y] = yObj;
+    }
+
+    let arr = yObj[m]
+    if(!arr){
+      arr = []
+      yObj[m] = arr
+    }
+    arr.push(item)
+
+   }
+   function initData(){
+    var endYear = ""
+    
+    let allYear = {}
+    let data = {allYear:allYear};
+    
+
+
+
+   let Recent365Count = 0;
+   let nowDate = new Date
+   let Recent365YMD =  `${nowDate.getFullYear()-1}-${(nowDate.getMonth() + 1).toString().padStart(2, '0')}-${nowDate.getDate().toString().padStart(2, '0')}`
+
+   console.log(Recent365YMD)
+
+
+    let arrCodes = document.querySelectorAll('pre > code')
+    if(!arrCodes ||  arrCodes.length == 0) return
+    if(arrCodes.length > 0){
+      arrCodes.forEach(function(code){
+        var strAll = code.textContent
+        strAll.split("\n").forEach(function(str){
+          let item = getDataFromSignleLine(str)
+          fillDataObj(data,item)
+          if(item  ){
+            if(item.date >= Recent365YMD){
+              
+              Recent365Count ++
+            }            
+            
+          }
+        })
+        
+      })
+    }
+
+    let allYearArr = Object.keys(allYear).sort().reverse()
+
+    create_heatmap('lmpRecent365'   ,'',data ,"Last 1Y",Recent365Count)
+    for(let i = 0; i < allYearArr.length; i++){
+      let y = allYearArr[i]
+      create_heatmap('lmp' + y ,y,data )
+
+
+    } 
+    
+    
+  };
+
+  initData()
+
+  window['_after_dec_fun'] = function(){
+    let con = document.getElementById('loveiContainer')
+    if(!con){
+      let decryptContent = document.getElementById('decryptContent') 
+      if(!decryptContent) return
+      con = document.createElement('div')
+      con.id = 'loveiContainer'
+      decryptContent.insertBefore(con,decryptContent.firstChild)
+      
+    }
+
+    initData()
+  }
+  window['_after_enc_fun'] = function (){
+    document.getElementById('loveiContainer').innerHTML = ''
+  }
+})();
+  
+  </script><footer class="footer">
+      <p> Powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://github.com/vitock/jekyll-zeta">Jekyll-zeta</a>
+     </p>
+    </footer></div>
+</section></main></body>
+</html>
