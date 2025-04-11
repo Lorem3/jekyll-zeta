@@ -20,6 +20,7 @@ permissions:
 
 jobs:
   del_runs:
+      needs: deploy
       runs-on: ubuntu-latest
       permissions:
         actions: write
@@ -112,7 +113,7 @@ jobs:
         uses: actions/configure-pages@v2
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
   
  
     
