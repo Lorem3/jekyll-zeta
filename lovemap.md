@@ -59,4 +59,4 @@ tags:
 > 正常使用不需要 下面的内容  
 
 
-{% include_code ../lovemap.md  %}
+{% include_code /lovemap.md  %}
