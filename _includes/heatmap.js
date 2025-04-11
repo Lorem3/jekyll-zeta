@@ -18,8 +18,23 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
 
   const todayYmd = date2ymd(new Date())
   // 指定日期，可以是年2014  或者 年月 2012-12-03
-  const strictMod =  endYear && endYear.length == 4;
-  const maxDateYmd = `${endYear}-12-31`
+
+  var  maxDateYmd = `${endYear}-12-31`
+  if (endYear &&  endYear.length == 4) {
+     maxDateYmd = `${endYear}-12-31`  
+  }else if(endYear && endYear.length == 10) { /// 
+    maxDateYmd = endYear
+  }else if(!endYear){
+    maxDateYmd = todayYmd
+    
+  }
+  endYear = maxDateYmd.substring(0, 4)
+
+  const minYmd = `${Number(endYear) - 1}${maxDateYmd.substring(4)}`
+  
+
+  console.log('maxDateYmd',maxDateYmd)
+  
   const dateEnd =
     endYear && endYear.length == 4 ? new Date(maxDateYmd) : new Date();
 
@@ -187,7 +202,6 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
 
       shuffle(SEQ);
 
-      const minYmd = `${endYear - 1}${maxDateYmd.substring(4)}`
       function update1Day() {
         if (G_idxOfDay < 0) {
           return;
@@ -197,8 +211,8 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
         let arrPostInOneDay = Map[dateKeyYmd];
 
         let hideblock = false
-        if (strictMod) {
-          hideblock = dateKeyYmd <= minYmd;
+        if (minYmd) {
+          hideblock = dateKeyYmd < minYmd;
         }
 
         let isFuture = dateKeyYmd > todayYmd;

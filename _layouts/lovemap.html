@@ -19,6 +19,7 @@ layout: default
 <style>
   .lv-year{
     margin-top: 2.5rem;
+    font-family: 'Courier New', Courier, monospace;
   }
 
   .lv-year-title{
@@ -26,12 +27,14 @@ layout: default
     font-size: 1.8em; 
     display: inline-block;
     color: #aaa;
+    
   }
   .lv-year-count{
     font-weight: bold;
     display: inline-block;
     font-size: 1.2em;
     color: #aaa;
+    
   }
   .lv-year-count::before{
     content: "x";
@@ -146,7 +149,6 @@ layout: default
           let nM = Number(month)
           let nD = Number(month)
           if (isNaN(nY) || isNaN(nD) || isNaN(nM) || nY < 1900 || nY > 2100 || nM < 1 || nM > 12 || nD < 1 || nD > 31) {
-            console.error("Invalid date format: " + str0)
             return null 
           }
         date = year + "-" + month.padStart(2, '0') + "-" + day.padStart(2, '0')
@@ -216,10 +218,7 @@ layout: default
             if(item.date >= Recent365YMD){
               
               Recent365Count ++
-            }
-
-            console.log(item.date,Recent365YMD,item.date >= Recent365YMD ? "XXXXXXXX": "-")
-            
+            }            
             
           }
         })
@@ -229,7 +228,7 @@ layout: default
 
     let allYearArr = Object.keys(allYear).sort().reverse()
 
-    create_heatmap('lmpRecent365'   ,'',data ,"Recent 1 Year",Recent365Count)
+    create_heatmap('lmpRecent365'   ,'',data ,"Last 1Y",Recent365Count)
     for(let i = 0; i < allYearArr.length; i++){
       let y = allYearArr[i]
       create_heatmap('lmp' + y ,y,data )
