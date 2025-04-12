@@ -3,6 +3,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
   
   const WeeKStart = parseInt(WeeKStartStr)
 
+  const color = dataSourceObj && dataSourceObj.color; 
 
   var GDATA = window._G_DATA;
   if (!GDATA) {

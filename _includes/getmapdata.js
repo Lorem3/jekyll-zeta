@@ -2,10 +2,31 @@
 (function () {
   var g_id = 100;
 
+
+  function getConfigFromStr(str,obj){
+    if (str && str.startsWith('#')) {
+      // #color #121212
+      // #title 123
+      let arr = str.split(' ')
+      if(arr.length >= 2){
+        let key = arr[0].substring(1)
+        if(key ){
+          obj[key] = str.substring(key.length + 2).trim()
+          return 1
+        }
+      }
+    }
+    return 0
+  }
+
   /// 2025-01-01 描述，日期格式yyyy-mm-dd，空格后跟上 描述
-  function getDataFromSignleLine(str0) {
+  function getDataFromSignleLine(str0,gData) {
     let str = str0.trim()
     if (!str) return null
+
+    if(getConfigFromStr(str,gData)) return null
+
+
     var arr = str.split(" ")
     var date0 = arr[0]
     let date = ''
@@ -81,8 +102,9 @@
     let Recent365YMD = `${nowDate.getFullYear() - 1}-${(nowDate.getMonth() + 1).toString().padStart(2, '0')}-${nowDate.getDate().toString().padStart(2, '0')}`
  
 
-    strData.split("\n").forEach(function (str) {
-      let item = getDataFromSignleLine(str)
+    strData.split("\n").forEach(function (str,idx) {
+      if(idx == 0) return 
+      let item = getDataFromSignleLine(str,dataObj)
       fillDataObj(dataObj, item)
       if (item) {
         if (item.date >= Recent365YMD) {
@@ -92,6 +114,7 @@
     })
 
     let allYearArr = Object.keys(allYear).sort().reverse()
+    console.log(dataObj)
 
     if(Recent365Count){
       create_heatmap('lmpRecent365' + g_id ++, '', dataObj, "Last 1Y", Recent365Count,node)
@@ -118,8 +141,6 @@
           return 
         }
 
-        console.log(strAll)
-        console.log(code.parentNode.parentNode.parentNode)
         parseDataAndCeateMap(strAll,code.parentNode.parentNode.parentNode)
         
       }
