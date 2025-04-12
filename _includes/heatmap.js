@@ -1,4 +1,5 @@
 function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_showWeek,_allyearurl,dataSourceObj,checkPrefix) {
+  checkPrefix = null
   
   const WeeKStart = parseInt(WeeKStartStr)
 

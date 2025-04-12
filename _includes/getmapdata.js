@@ -70,7 +70,7 @@
     })
   }
   
-  function parseDataAndCeateMap(strData) {
+  function parseDataAndCeateMap(strData,node) {
    
 
     let allYear = {}
@@ -94,12 +94,12 @@
     let allYearArr = Object.keys(allYear).sort().reverse()
 
     if(Recent365Count){
-      create_heatmap('lmpRecent365' + g_id ++, '', dataObj, "Last 1Y", Recent365Count)
+      create_heatmap('lmpRecent365' + g_id ++, '', dataObj, "Last 1Y", Recent365Count,node)
     }
     
     for (let i = 0; i < allYearArr.length; i++) {
       let y = allYearArr[i]
-      create_heatmap('lmp' + y + g_id ++ , y, dataObj)
+      create_heatmap('lmp' + y + g_id ++ , y, dataObj,undefined,undefined,node)
     }
 
   
@@ -119,7 +119,8 @@
         }
 
         console.log(strAll)
-        parseDataAndCeateMap(strAll)
+        console.log(code.parentNode.parentNode.parentNode)
+        parseDataAndCeateMap(strAll,code.parentNode.parentNode.parentNode)
         
       }
    
