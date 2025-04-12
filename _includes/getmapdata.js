@@ -142,6 +142,7 @@
         }
 
         parseDataAndCeateMap(strAll,code.parentNode.parentNode.parentNode)
+ 
         
       }
    

@@ -35,7 +35,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
   const minYmd = `${Number(endYear) - 1}${maxDateYmd.substring(4)}`
   
 
-  console.log('maxDateYmd',maxDateYmd)
+ 
   
   const dateEnd =
     endYear && endYear.length == 4 ? new Date(maxDateYmd) : new Date();
@@ -241,6 +241,12 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
              (checkClassPrefix + "-check2") 
             : checkClassPrefix + "-check"
         }`;
+
+        if (color && arrPostInOneDay && arrPostInOneDay.length) {
+          dayCell.style.backgroundColor = color + (arrPostInOneDay.length > 2 ? "ff" : arrPostInOneDay.length > 1 ? 'cc' : '99')
+        }
+
+        
 
         if (arrPostInOneDay && arrPostInOneDay.length > 0) {
           let isDirectly = arrPostInOneDay.length == 1;
