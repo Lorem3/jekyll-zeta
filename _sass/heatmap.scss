@@ -1,7 +1,7 @@
 
 $hmbloksizeH:13px;
 $dayGap:1px;
-$heatFont:Georgia,"Nimbus Roman No9 L","Songti SC",STSong,"AR PL New Sung","AR PL SungtiL GB",NSimSun,SimSun,"TW\-Sung","WenQuanYi Bitmap Song","AR PL UMing CN","AR PL UMing HK","AR PL UMing TW","AR PL UMing TW MBE",sans-serif;
+// $heatFont: 'Courier New', Courier, monospace;; //Georgia,"Nimbus Roman No9 L","Songti SC",STSong,"AR PL New Sung","AR PL SungtiL GB",NSimSun,SimSun,"TW\-Sung","WenQuanYi Bitmap Song","AR PL UMing CN","AR PL UMing HK","AR PL UMing TW","AR PL UMing TW MBE",sans-serif;
 
 .heatmap{
   display: grid;
@@ -36,7 +36,7 @@ $heatFont:Georgia,"Nimbus Roman No9 L","Songti SC",STSong,"AR PL New Sung","AR P
   align-items: center;
   justify-content: center;
 
-  font-family:  $heatFont;
+  // font-family:  $heatFont;
   font-size: 0.8rem;
 
   height: 12px;
@@ -65,7 +65,7 @@ $heatFont:Georgia,"Nimbus Roman No9 L","Songti SC",STSong,"AR PL New Sung","AR P
   justify-content: center;
   padding-right: 0.2em;
   font-size: 0.8rem;
-  font-family:  $heatFont;
+  // font-family:  $heatFont;
   line-height: $hmbloksizeH;
   height: $hmbloksizeH;
 }
