@@ -113,6 +113,20 @@
       }
     })
 
+
+    if (dataObj.title ) {
+
+
+      let divTitle = document.createElement('div')
+      divTitle.className = 'custom-map-title'  
+      divTitle.innerText = dataObj.title || ''
+
+      let codeHolder = node.parentNode
+      codeHolder.insertBefore(divTitle,node)
+      
+    }
+    
+
     let allYearArr = Object.keys(allYear).sort().reverse()
     console.log(dataObj)
 

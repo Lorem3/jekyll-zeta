@@ -17,14 +17,23 @@ layout: default
 
 
 <style>
+  .custom-map-title{
+    margin: 0;
+    font-size: 1.5em;
+    color: #444455;
+  }
+
+  .map-container{
+    padding-bottom: 4em;
+  }
   .lv-year{
-    margin-top: 2.5rem;
+    
     font-family: 'Courier New', Courier, monospace;
   }
 
   .lv-year-title{
     font-weight: bold;
-    font-size: 1.8em; 
+    font-size: 1.5em; 
     display: inline-block;
     color: #aaa;
     
@@ -56,6 +65,7 @@ layout: default
   <script >
     function create_heatmap(heatmapid,endYear,dataObj,title,count,node){
       let container =  document.createElement('div')
+      container.className = 'map-container'
       let divtitle = document.createElement('div')
       divtitle.className = 'lv-year'
 
