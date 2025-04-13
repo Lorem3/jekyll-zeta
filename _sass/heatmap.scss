@@ -24,7 +24,8 @@ $dayGap:1px;
   grid-column-end: 3;
 
   display: grid;
-  grid-template-columns: repeat(12,1fr);
+  grid-template-columns: repeat(53,4fr);
+  
 
   border: $dbgBorder;
   
@@ -34,7 +35,7 @@ $dayGap:1px;
 .heatmap-month-cell{
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
 
   // font-family:  $heatFont;
   font-size: 0.8rem;
@@ -42,6 +43,12 @@ $dayGap:1px;
   height: 12px;
 
   padding: 0.2em 0;
+
+
+ 
+ 
+  overflow: visible;
+  
   
 }
 

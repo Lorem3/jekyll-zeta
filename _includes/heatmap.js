@@ -1,9 +1,19 @@
-function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_showWeek,_allyearurl,dataSourceObj,checkPrefix) {
-  checkPrefix = null
-  
-  const WeeKStart = parseInt(WeeKStartStr)
+function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_showWeek,_allyearurl,dataSourceObj) {
 
-  const color = dataSourceObj && dataSourceObj.color; 
+
+  function idx2Ymd(idx) {
+    let t = new Date(endStamp - (DayCount - 1 - idx) * 3600000 * 24);
+    let m = t.getMonth() + 1;
+    let d = t.getDate();
+    return `${t.getFullYear()}-${m < 10 ? "0" + m : m}-${
+      d < 10 ? "0" + d : d
+    }`;
+  }
+  
+
+
+  const WeeKStart = parseInt(WeeKStartStr)
+  const color = dataSourceObj && dataSourceObj.color;
 
   var GDATA = window._G_DATA;
   if (!GDATA) {
@@ -86,6 +96,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
         }
         GDATA['_allYear'] = d ;return d ;})
   }
+
   !(function fillData() {
     let year = "" + dateEnd.getFullYear();
     let preYear = "" + (year - 1);
@@ -133,14 +144,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
       );
     }
 
-    function idx2Ymd(idx) {
-      let t = new Date(endStamp - (DayCount - 1 - idx) * 3600000 * 24);
-      let m = t.getMonth() + 1;
-      let d = t.getDate();
-      return `${t.getFullYear()}-${m < 10 ? "0" + m : m}-${
-        d < 10 ? "0" + d : d
-      }`;
-    }
+   
 
     function updateCell(data) {
       if (!data) return;
@@ -212,6 +216,8 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
         let dateKeyYmd = idx2Ymd(idxOfDay);
         let arrPostInOneDay = Map[dateKeyYmd];
 
+        
+
         let hideblock = false
         if (minYmd) {
           hideblock = dateKeyYmd < minYmd;
@@ -220,6 +226,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
         let isFuture = dateKeyYmd > todayYmd;
 
         const dayCell = dayCells[idxOfDay];
+        dayCell.dataset.x = dateKeyYmd
         if (hideblock) {
           dayCell.classList = 'heatmap-day-cell hm-check-notyet'
         }else if(isFuture){
@@ -227,8 +234,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
         }
         else{
           
-          const checkClassPrefix = checkPrefix || 'hm'
-          const nobg =
+           const nobg =
           parseInt(dateKeyYmd.substring(5, 7)) % 2 == 1
             ? "hm-check-no-b"
             : "hm-check-no-a";
@@ -236,10 +242,10 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
           !arrPostInOneDay
             ? nobg
             : arrPostInOneDay.length > 2
-            ?  (checkClassPrefix + "-check3")
+            ?  ("hm-check3")
             : arrPostInOneDay.length == 2 ?
-             (checkClassPrefix + "-check2") 
-            : checkClassPrefix + "-check"
+             ( "hm-check2") 
+            : "hm-check"
         }`;
 
         if (color && arrPostInOneDay && arrPostInOneDay.length) {
@@ -357,17 +363,40 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
     const monthEle = document.createElement("div");
     monthEle.className = "heatmap-month";
     Frag.appendChild(monthEle);
-    const monthStr = _MonthStr.split(" ");
+    const monthStrArr = _MonthStr.split(" ");
 
     let nowM = dateEnd.getMonth();
     let nowWeekIdx = nLastColumnCount - 1;
 
-    for (let i = 0; i < monthStr.length; i++) {
+    let monthEleArr = []
+    for (let i = 0; i < monthStrArr.length; i++) {
       let m = document.createElement("span");
       m.className = "heatmap-month-cell";
-      m.innerHTML = `${monthStr[(i + nowM + 1) % 12]}`;
+      // m.innerHTML = `${monthStr[(i + nowM + 1) % 12]}`;
       monthEle.appendChild(m);
+      monthEleArr.push(m)
     }
+
+    /// reset month cell postion
+
+    
+    for (let index = 0 ,j = 0; index < ColumnsCount && j < monthStrArr.length; index++) {
+      const ymd = idx2Ymd(index  * 7)
+      const m = ymd.substring(5,7)
+      const d = ymd.substring(8,10)
+      
+      if (d <= '07') {
+        let ele = monthEleArr[j ++]
+        console.log(ymd,m,d)
+        ele.innerText =  monthStrArr[Number(m) - 1]
+        ele.style.gridColumnStart = index  + 1
+        ele.style.gridColumnEnd = 'span 4'
+  
+      }
+    }
+
+
+
 
     const weekEle = document.createElement("div");
     weekEle.className = "heatmap-week";
@@ -397,7 +426,7 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
         }
 
         let m = document.createElement("span");
-        m.classList = `heatmap-day-cell ${checkPrefix || "hm"}-check-nodata`;
+        m.classList = `heatmap-day-cell hm-check-nodata`;
         dayEle.appendChild(m);
       }
     }
