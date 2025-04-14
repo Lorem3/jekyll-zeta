@@ -248,8 +248,16 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
             : "hm-check"
         }`;
 
-        if (color && arrPostInOneDay && arrPostInOneDay.length) {
-          dayCell.style.backgroundColor = color + (arrPostInOneDay.length > 2 ? "ff" : arrPostInOneDay.length > 1 ? 'cc' : '99')
+         
+        if(arrPostInOneDay && arrPostInOneDay.length){
+          // arrPostInOneDay
+          let objWithColor = arrPostInOneDay.find(function(e){return  e.color})
+          if(objWithColor){
+            dayCell.style.backgroundColor = objWithColor.color ;//+ (arrPostInOneDay.length > 2 ? "ff" : arrPostInOneDay.length > 1 ? 'cc' : '99')
+          }else{
+            dayCell.style.backgroundColor = color + (arrPostInOneDay.length > 2 ? "ff" : arrPostInOneDay.length > 1 ? 'cc' : '99')
+          }
+          
         }
 
         

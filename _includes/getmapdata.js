@@ -54,10 +54,19 @@
       return null
     }
     var title = ""
+    let color = undefined
     if (arr.length > 1) {
       title = arr.slice(1).join(" ")
+
+      const regColor = /#[0-9a-fA-F]{6}/
+      let colorScaned = regColor.exec(title)
+      if (colorScaned && colorScaned.length) {
+        color = colorScaned[0]
+        title = title.replace(regColor,'')
+      }
+
     }
-    return { date: date, title: title }
+    return { date: date, title: title ,color}
   }
 
   function fillDataObj(data, item) {
