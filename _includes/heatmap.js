@@ -14,6 +14,16 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
 
   const WeeKStart = parseInt(WeeKStartStr)
   const color = dataSourceObj && dataSourceObj.color;
+  var beginDate = dataSourceObj && dataSourceObj.beginDate;
+  if(beginDate && beginDate.length != 10){
+    beginDateArr = beginDate.split('-');
+    // to yyyy-mm-dd
+    if (beginDateArr.length == 3) {
+      beginDate = `${beginDateArr[0]}-${beginDateArr[1].padStart(2,'0')}-${beginDateArr[2].padStart(2,'0')}`
+      
+    }
+  }
+
 
   var GDATA = window._G_DATA;
   if (!GDATA) {
@@ -231,6 +241,14 @@ function __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_s
           dayCell.classList = 'heatmap-day-cell hm-check-notyet'
         }else if(isFuture){
           dayCell.classList = parseInt(dateKeyYmd.substring(5, 7)) % 2 == 1 ? 'heatmap-day-cell hm-check-future-b' : 'heatmap-day-cell hm-check-future-a'
+        }
+        else if(beginDate && dateKeyYmd < beginDate && (!arrPostInOneDay || arrPostInOneDay.length == 0)){
+          const nobg =
+          parseInt(dateKeyYmd.substring(5, 7)) % 2 == 1
+            ? "hm-check-future-b"
+            : "hm-check-future-a";
+
+          dayCell.classList = `heatmap-day-cell ${nobg}`;
         }
         else{
           
