@@ -137,7 +137,7 @@
     
 
     let allYearArr = Object.keys(allYear).sort().reverse()
-    console.log(dataObj)
+
 
     if(Recent365Count){
       create_heatmap('lmpRecent365' + g_id ++, '', dataObj, "Last 1Y", Recent365Count,node)
@@ -147,6 +147,8 @@
       let y = allYearArr[i]
       create_heatmap('lmp' + y + g_id ++ , y, dataObj,undefined,undefined,node)
     }
+
+    node.style.display = 'none'
 
   
 
