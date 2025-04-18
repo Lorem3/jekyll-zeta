@@ -25,11 +25,21 @@
   只加载一次
 {% endcomment %}
 <script >
-  function create_heatmap(heatmapid,endYear){
 
-    {%- assign MothStr = site.theme_config.heatMapMonth  -%}
+  function create_heatmap(heatmapid,endYear){
+    {%- include getPostData.js  -%}
+    {%- include heatmap_svg.js  -%}
+
+
+    /**************************************/
+    /**************************************/
+    /**************************************/
+
+
+
+    {% assign MothStr = site.theme_config.heatMapMonth  -%}
     {%- assign HeatMapShowWeek = site.theme_config.heatMapShowWeek  -%}
-    {%- assign heatMapLoadCount = site.theme_config.heatMapLoadCount | default: 8  -%}
+    {%- assign heatMapLoadCount = site.theme_config.heatMapLoadCount | default: 8  %}
     
     const WeeKStartStr = "{{ site.theme_config.heatMapWeekStart | default: 0 }}" ;//  0 sunday 1 monday 2. tuesday ...
 
@@ -37,9 +47,31 @@
     var _MonthStr =  '{{ MothStr | default: "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec" }}';
     var _showWeek =  '{{ HeatMapShowWeek | default: "Sun Mon Tue Wed Thu Fri Sat" }}';
     var _allyearurl =  '{{ "assets/dyn/allyear.json" | relative_url }}';
-    {% include heatmap.js  %}
+   
 
-    __filldata(heatmapid,endYear,WeeKStartStr,heatMapLoadCount,_MonthStr,_showWeek,_allyearurl)
+
+    if (!endYear) {
+      let now = new Date()
+      endYear = `${now.getFullYear()}-${(101 + now.getMonth()).toString().substring(1)}-${(100 + now.getDate()).toString().substring(1)}`
+    }else if(('' + endYear).length == 4 ){
+      endYear = '' + endYear + '-12-31'  
+    }
+    
+    const svgmap = createSVGMap(endYear)
+
+    let father = document.getElementById(heatmapid)
+    father.appendChild(svgmap.svg);
+
+    const p = hm_getPostData(endYear,_allyearurl);
+    console.log(p)
+    p.then(d=>{
+      console.log(d)
+      svgmap.updateDays(d)
+    })
+ 
+
+
+ 
   }
 </script>
 
