@@ -16,7 +16,7 @@
 
   const namespaceURI = "http://www.w3.org/2000/svg";
   const dayStartX = 35;
-  const dayStartY = 60;
+  const dayStartY = 30;
   const dayW = 12;
   const dayH = 12;
   const dayGap = 2;
@@ -25,7 +25,7 @@
   const WeekStart = 1; // sunday
 
   const mapW = dayStartX + (dayGap + dayW) * WeekCount + 10;
-  const mapH = dayStartY + (dayGap + dayH) * 7 + 10;
+  const mapH = dayStartY + (dayGap + dayH) * 7 + 20 
 
   const mapId = "MP-" + Math.random().toString(16).substring(2);
   const daysId = mapId + "days";
@@ -35,10 +35,12 @@
   const endDateDay = dateEnd.getDay();
   const endStamp = dateEnd.getTime();
   const DayCount = (WeekCount - 1) * 7 + ((7 + endDateDay - WeekStart) % 7);
-  const minYmd = getPreYearYmd(endStamp);
+  var  minYmd = getPreYearYmd(endStamp);
 
   const MinYmdIdx =
-    DayCount - Math.floor((endStamp - new Date(minYmd)) / (24 * 3600000));
+    DayCount - Math.floor((endStamp - new Date(minYmd)) / (24 * 3600000)) + 1;
+  
+  
 
   const TodayIdx =
     DayCount - Math.floor((endStamp - new Date(date2ymd(new Date))) / (24 * 3600000));
@@ -86,6 +88,8 @@
 
     rc.setAttribute("x", "" + x);
     rc.setAttribute("y", "" + y);
+    rc.dataset.x = x 
+    rc.dataset.y = y 
 
     let ymd = idx2Ymd(idx);
     rc.dataset.ymd = ymd;
@@ -115,11 +119,7 @@
   function updateDays(dataMap) {
     const color = dataMap.color || '#40c463'
 
-    const t1 = document.createElementNS(namespaceURI,'tspan')
-    t1.setAttribute('font-size','25')
-    t1.setAttribute('dy','0')
-    t1.textContent =  dataMap.title ||  `${dateEnd.getFullYear()}`;
-
+    
     const t2 = document.createElementNS(namespaceURI,'tspan')
     t2.setAttribute('font-size','12')
     t2.setAttribute('dy','0')
@@ -127,7 +127,7 @@
     t2.setAttribute('fill','#888888')
     t2.setAttribute('font-family','courier')
     t2.textContent =  '';
-    tilteE.append(t1,t2)
+    tilteE.append(t2)
 
 
     let countOfItem = 0
@@ -170,6 +170,7 @@
 
       return null;
     }
+ 
     function updateDay1(idx) {
       let node = arrNodes[idx];
       if (node) {
@@ -178,6 +179,8 @@
           return;
         }
 
+
+ 
         let ymd = node.dataset.ymd;
         let m = ymd.substring(5, 7);
         let isOdd = Number(m) % 2;
@@ -190,6 +193,19 @@
         }
         if (!arrData && (idx > TodayIdx || idx < beginIdx)) {
           node.setAttribute("fill", isOdd ? "url(#fillB)" : "url(#fillA)");
+
+
+          node.onmouseenter = function () {
+            node.setAttribute('stroke','#000000')
+            node.setAttribute('stroke-width','1')
+            showTip(node, idx, arrData);
+          };
+          node.onmouseleave = function () {
+            node.setAttribute('stroke','')
+            node.setAttribute('stroke-width','')
+            showTip(node, -1);
+          };
+
           return;
         }
 
@@ -199,6 +215,11 @@
         const c = arrData && arrData.length;
         let colorSet = color
         if (c) {
+          let customColor = arrData.find(e=>e.color)
+          if(customColor ){
+            colorSet = customColor.color
+          }
+
           node.setAttribute("class", "svg-day-1");
           node.setAttribute(
             "fill",
@@ -210,12 +231,29 @@
           );
 
           node.onmouseenter = function () {
+            node.setAttribute('stroke','#000000')
+            node.setAttribute('stroke-width','1')
             showTip(node, idx, arrData);
           };
           node.onmouseleave = function () {
+            node.setAttribute('stroke','')
+            node.setAttribute('stroke-width','')
             showTip(node, -1);
           };
         } else {
+
+
+          node.onmouseenter = function () {
+            node.setAttribute('stroke','#000000')
+            node.setAttribute('stroke-width','1')
+            showTip(node, idx, arrData);
+          };
+          node.onmouseleave = function () {
+            node.setAttribute('stroke','')
+            node.setAttribute('stroke-width','')
+            showTip(node, -1);
+          };
+
           let ymd = node.dataset.ymd;
           if (ymd) {
             let m = ymd.substring(5, 7);
@@ -249,8 +287,8 @@
   svg.id = mapId;
   svg.setAttribute("width", "" + mapW);
   svg.setAttribute("height", "" + mapH);
-  // svg.setAttribute("fill-color", "#ff0000");
-//   svg.style.backgroundColor = "#fffff0";
+
+  // svg.style.backgroundColor = "#fffff0";
   svg.style.overflow = "visible";
 
 
@@ -317,14 +355,25 @@
   groupDay.appendChild(fragment);
  
   const  tilteE = document.createElementNS(namespaceURI, "text");
-  tilteE.setAttribute("y",  `30`);
-  tilteE.setAttribute("x", '' + dayStartX);
+  tilteE.setAttribute("y",  `${dayStartY + (dayGap + dayH) * 7 + 10 } `);
+  tilteE.setAttribute("x", `${mapW - 10}` );
 
-  tilteE.setAttribute("fill", '#333333');
-  tilteE.setAttribute("font-size", "25");
-  tilteE.setAttribute("font-weight", "medium");
-  tilteE.setAttribute("font-family", "Helvetica");
+  tilteE.setAttribute("fill", '#999999');
+  tilteE.setAttribute("font-size", "15");
+  // tilteE.setAttribute("font-weight", "medium");
+  tilteE.setAttribute("font-family", "monospace");
+  tilteE.setAttribute('text-anchor','end')
+  tilteE.setAttribute('dominant-baseline','middle')
   svg.appendChild(tilteE)
+
+  
+  const beginYmd = idx2Ymd(MinYmdIdx)
+  if (beginYmd.substring(0,4) == endYmd.substring(0,4)) {
+    tilteE.textContent = beginYmd.substring(0,4)
+  }else{
+    tilteE.textContent = ` ~ ${endYmd}` 
+  }
+  
 
  
 
@@ -338,13 +387,13 @@
     idx: -1,
   };
   function showTip(dayNode, dayidx, items) {
-    if (dayidx < 0 || !items || items.length == 0) {
+    if (dayidx < 0 ) {
       tipState.showFlag = 0;
       setTimeout(() => {
         if (tipState.showFlag == 0) {
           tipG.innerHTML = "";
         }
-      }, 300);
+      }, 50);
 
       return;
     }
@@ -357,9 +406,14 @@
     tipState.idx = dayidx;
     tipG.innerHTML = "";
 
+    const isEmpy = items ? 0 : 1
+    if(!items){
+      items = [{date:dayNode.dataset.ymd}]
+    }
+
     tipG.setAttribute("class", "svg-hm-day-tip");
     var width = "200";
-    const count = items.length;
+    const count =  items.length 
     const vSpace = 10;
     const lineH = 25;
     const height = vSpace * 2 + lineH * count + "";
@@ -373,6 +427,7 @@
     frag.append(rcbg);
 
     tipG.onmouseenter = function () {
+      if(isEmpy)return
       tipState.showFlag = 2;
     };
     tipG.onmouseleave = function () {
@@ -418,7 +473,7 @@
     const row = dayidx % 7;
     const column = (dayidx - row) / 7;
     const x = dayStartX + column * (dayGap + dayW) + dayW / 2 - width / 2;
-    const y = dayStartY + row * (dayGap + dayH) - height;
+    const y = dayStartY + row * (dayGap + dayH) - height ;
 
     tipG.setAttribute("transform", `translate(${x}, ${y})`);
   }

@@ -109,7 +109,7 @@ layout: default
      }
 
 
-      const svgmap = createSVGMap(endYear)
+      const svgmap = createSVGMap(endYear,dataObj.beginDate)
       container.appendChild(svgmap.svg);
       svgmap.updateDays(dataObj)
   }
