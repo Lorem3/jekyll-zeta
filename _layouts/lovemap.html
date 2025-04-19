@@ -80,19 +80,7 @@ layout: default
       container.className = 'map-container'
       let divtitle = document.createElement('div')
       divtitle.className = 'lv-year'
-
-      let divYear =  document.createElement('div')
-      divYear.className = 'lv-year-title'
-      divYear.innerText =  title || endYear 
-      divtitle.appendChild(divYear)
-
-      let divYearC =  document.createElement('div')
-      divYearC.className = 'lv-year-count'
-      divYearC.innerText = ''  + (count  || (dataObj.allYear[endYear] ||''))
-      divtitle.appendChild(divYearC)
-
-
-
+  
       container.appendChild(divtitle) 
       let div = document.createElement('div')
       div.className = 'heatmap'
