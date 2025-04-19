@@ -1,7 +1,7 @@
 ---
 layout: lovemap
 permalink: happylife.html
-title: 项少龙的幸福生活 psw:12345
+title: 图 psw:12345
 tags:
     - happy_life     #  password:sex
     - encrypt1       #  passowrd: 12345
@@ -11,9 +11,9 @@ tags:
  
 ```  
 #mapdata
-#title 项少龙 
+#title 日记图
 #color #ef3473
-#beginDate 2024-2-6
+//#beginDate 2024-2-6
 
 
 2024-01-22 乌廷芳：项少龙的第一个女人，赵国贵族之女，后来成为他的正妻。 #f97d1c

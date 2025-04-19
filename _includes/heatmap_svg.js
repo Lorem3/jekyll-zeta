@@ -473,7 +473,7 @@
     const row = dayidx % 7;
     const column = (dayidx - row) / 7;
     const x = dayStartX + column * (dayGap + dayW) + dayW / 2 - width / 2;
-    const y = dayStartY + row * (dayGap + dayH) - height ;
+    const y = dayStartY + row * (dayGap + dayH) - height - dayGap;
 
     tipG.setAttribute("transform", `translate(${x}, ${y})`);
   }
