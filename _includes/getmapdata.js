@@ -2,6 +2,15 @@
 (function () {
   var g_id = 100;
 
+  function normalizeYmd(ymd){
+    if (ymd) {
+      const arr = ymd.split('-')
+      return `${arr[0]}-${arr[1].padStart(2,'0')}-${arr[2].padStart(2,'0')}`
+    }
+
+    return ymd
+  }
+
 
   function getConfigFromStr(str,obj){
     if (str && str.startsWith('#')) {
@@ -42,14 +51,14 @@
       let arrRg = date0.split('~')
       let beginYmd = arrRg[0]
       let endYmd = arrRg[1]
-      let dateBegin = new Date(beginYmd)
+      let dateBegin = new Date(normalizeYmd(beginYmd))
       if (!dateBegin || isNaN(dateBegin)) {
         
         return
       }
       let rangCount = 7
       if(endYmd){
-         let dend = new Date(endYmd)
+         let dend = new Date(normalizeYmd(endYmd))
          if (dend && !isNaN(dend)) {
           rangCount = Math.floor((dend.getTime() - dateBegin.getTime())/ 86400000) + 1
          }
