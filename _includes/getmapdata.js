@@ -54,6 +54,9 @@
           rangCount = Math.floor((dend.getTime() - dateBegin.getTime())/ 86400000) + 1
          }
          
+      }else{
+        rangCount =  Math.floor((Date.now() - dateBegin.getTime())/ 86400000) + 1;
+        if(rangCount > 7) rangCount =7
       }
  
       const desc = arr.slice(1).join(' ')
