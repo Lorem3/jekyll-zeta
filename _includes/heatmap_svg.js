@@ -45,7 +45,6 @@
   const TodayIdx =
     DayCount - Math.floor((endStamp - new Date(date2ymd(new Date))) / (24 * 3600000));
 
-  console.log('xxxxx',Math.floor((endStamp - Date.now()) / (24 * 3600000)));
 
   const beginIdx = !dateBegin ? -1 : DayCount - Math.floor((endStamp - dateBegin.getTime()) / (24 * 3600000));
 

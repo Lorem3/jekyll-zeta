@@ -19,16 +19,60 @@
     return 0
   }
 
+
+
+  function date2ymd(t) {
+    let m = t.getMonth() + 1;
+    let d = t.getDate();
+    return `${t.getFullYear()}-${m < 10 ? "0" + m : m}-${d < 10 ? "0" + d : d}`;
+  }
   /// 2025-01-01 描述，日期格式yyyy-mm-dd，空格后跟上 描述
   function getDataFromSignleLine(str0,gData) {
+    if(!str0) return null
     let str = str0.trim()
     if (!str) return null
 
-    if(getConfigFromStr(str,gData)) return null
+    if(gData && getConfigFromStr(str,gData)) return null
 
 
     var arr = str.split(" ")
     var date0 = arr[0]
+    date0 = date0.replace('～','~')
+    if (gData && date0.indexOf("~") > 0) {
+      let arrRg = date0.split('~')
+      let beginYmd = arrRg[0]
+      let endYmd = arrRg[1]
+      let dateBegin = new Date(beginYmd)
+      if (!dateBegin || isNaN(dateBegin)) {
+        
+        return
+      }
+      let rangCount = 7
+      if(endYmd){
+         let dend = new Date(endYmd)
+         if (dend && !isNaN(dend)) {
+          rangCount = Math.floor((dend.getTime() - dateBegin.getTime())/ 86400000) + 1
+         }
+         
+      }
+ 
+      const desc = arr.slice(1).join(' ')
+      
+      let resultArr = []
+      for (let i  = 0; i  < rangCount; i ++) {
+        const ymd = date2ymd(new Date(dateBegin.getTime() + i * 86400000))
+        const newStr = ymd + ' ' + desc
+        const newEle = getDataFromSignleLine(newStr)
+        if(newEle){
+          resultArr.push(newEle)
+        }
+      }
+      return resultArr.length ? resultArr : null
+
+    }
+
+
+
     let date = ''
     if (date0) {
       let ymd = date0.split("-")
@@ -114,12 +158,24 @@
     strData.split("\n").forEach(function (str,idx) {
       if(idx == 0) return 
       let item = getDataFromSignleLine(str,dataObj)
-      fillDataObj(dataObj, item)
-      if (item) {
-        if (item.date >= Recent365YMD) {
-          Recent365Count++
+      if (item && Array.isArray(item)) {
+        item.forEach(e=>{
+          fillDataObj(dataObj, e)
+          if (e) {
+            if (e.date >= Recent365YMD) {
+              Recent365Count++
+            }
+          }
+        })
+      }else{
+        fillDataObj(dataObj, item)
+        if (item) {
+          if (item.date >= Recent365YMD) {
+            Recent365Count++
+          }
         }
       }
+      
     })
 
 
