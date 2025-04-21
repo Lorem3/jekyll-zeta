@@ -57,8 +57,9 @@ tags:
 ```
 #mapdata
 #title 野玫瑰
+#recent 0
 #beginDate 2025-01-20
-2025-2-21 野玫瑰 #ffc18c
+2023-2-21 野玫瑰 #ffc18c
 
 2025-3-21  #1177ff
 

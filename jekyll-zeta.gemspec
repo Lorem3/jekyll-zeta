@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-zeta"
-  spec.version       = "0.9.22"
+  spec.version       = "0.10.0"
   spec.authors       = ["vitock"]
   spec.email         = ["r"]
 
