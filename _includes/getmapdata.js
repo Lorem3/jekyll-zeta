@@ -2,6 +2,15 @@
 (function () {
   var g_id = 100;
 
+  function ymd2Date(ymd) {
+    const parts = ymd.split('-').map(Number);
+    if (parts.length !== 3) {
+      throw new Error(`Invalid date format: ${ymd}`);
+    }
+    const [year, month, day] = parts;
+    return new Date(year, month - 1, day); // month 从 0 开始
+  };
+
   function normalizeYmd(ymd){
     if (ymd) {
       const arr = ymd.split('-')
@@ -51,14 +60,14 @@
       let arrRg = date0.split('~')
       let beginYmd = arrRg[0]
       let endYmd = arrRg[1]
-      let dateBegin = new Date(normalizeYmd(beginYmd))
+      let dateBegin = ymd2Date(normalizeYmd(beginYmd))
       if (!dateBegin || isNaN(dateBegin)) {
         
         return
       }
       let rangCount = 7
       if(endYmd){
-         let dend = new Date(normalizeYmd(endYmd))
+         let dend = ymd2Date(normalizeYmd(endYmd))
          if (dend && !isNaN(dend)) {
           rangCount = Math.floor((dend.getTime() - dateBegin.getTime())/ 86400000) + 1
          }
@@ -71,8 +80,9 @@
       const desc = arr.slice(1).join(' ')
       
       let resultArr = []
+      const timeStampBegin =  dateBegin.getTime()
       for (let i  = 0; i  < rangCount; i ++) {
-        const ymd = date2ymd(new Date(dateBegin.getTime() + i * 86400000))
+        const ymd = date2ymd(new Date(timeStampBegin + i * 86400000))
         const newStr = ymd + ' ' + desc
         const newEle = getDataFromSignleLine(newStr)
         if(newEle){
