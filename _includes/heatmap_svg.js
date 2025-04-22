@@ -199,6 +199,7 @@
             node.setAttribute('stroke-width','1')
             showTip(node, idx, arrData);
           };
+          node.onclick = node.onmouseenter
           node.onmouseleave = function () {
             node.setAttribute('stroke','')
             node.setAttribute('stroke-width','')
@@ -234,6 +235,7 @@
             node.setAttribute('stroke-width','1')
             showTip(node, idx, arrData);
           };
+          node.onclick = node.onmouseenter
           node.onmouseleave = function () {
             node.setAttribute('stroke','')
             node.setAttribute('stroke-width','')
@@ -247,6 +249,7 @@
             node.setAttribute('stroke-width','1')
             showTip(node, idx, arrData);
           };
+          node.onclick = node.onmouseenter
           node.onmouseleave = function () {
             node.setAttribute('stroke','')
             node.setAttribute('stroke-width','')
@@ -390,7 +393,7 @@
       tipState.showFlag = 0;
       setTimeout(() => {
         if (tipState.showFlag == 0) {
-          tipG.innerHTML = "";
+          tipG.style.display = 'none' 
         }
       }, 50);
 
@@ -403,7 +406,8 @@
 
     tipState.showFlag = 1;
     tipState.idx = dayidx;
-    tipG.innerHTML = "";
+    tipG.innerHTML = ''
+    tipG.style.display = 'block'
 
     const isEmpy = items ? 0 : 1
     if(!items){
@@ -416,6 +420,8 @@
     const vSpace = 10;
     const lineH = 25;
     const height = vSpace * 2 + lineH * count + "";
+
+    
     const frag = document.createDocumentFragment();
     let rcbg = document.createElementNS(namespaceURI, "rect");
     rcbg.setAttribute("fill", "#333333cc");
@@ -429,9 +435,10 @@
       if(isEmpy)return
       tipState.showFlag = 2;
     };
+
     tipG.onmouseleave = function () {
       tipState.showFlag = 0;
-      tipG.innerHTML = "";
+      tipG.style.display = 'none' 
     };
     let txtLen = 0
     items.forEach((e, i) => {
