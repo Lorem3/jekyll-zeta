@@ -4,7 +4,7 @@
     },
     "mangle": true,
     "output": {
-      "max_line_len": 200
+      "max_line_len": 250
     }
     
   }
