@@ -2,13 +2,13 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-zeta"
-  spec.version       = "0.10.2"
+  spec.version       = "0.10.3"
   spec.authors       = ["vitock"]
   spec.email         = ["r"]
 
   spec.summary       = "A clean fast, minimalist Jekyll theme."
   spec.homepage      = "https://github.com/vitock/jekyll-zeta"
-  spec.license       = "GPL"
+  spec.license       = "GPLv3"
 
   spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(assets|_layouts|_includes|_sass|LICENSE|README|_config\.yml|index\.html)!i) }
   

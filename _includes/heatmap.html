@@ -1,3 +1,6 @@
+
+{% comment %} keep this up empty line  {% endcomment %}
+
 <div>
 {%- if include.collection -%}
   {%- assign posts = include.collection -%}  
@@ -32,7 +35,7 @@
 
 
     /**************************************/
-    /**************************************/
+    /***************Create Map***********************/
     /**************************************/
 
 
@@ -60,6 +63,10 @@
     const svgmap = createSVGMap(endYear)
 
     let father = document.getElementById(heatmapid)
+    if (!father) {
+      console.error('no father')
+      return
+    }
     father.appendChild(svgmap.svg);
 
     const p = hm_getPostData(endYear,_allyearurl);

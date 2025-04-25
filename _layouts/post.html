@@ -1,23 +1,5 @@
 ---
 layout: default
 ---
-{%- assign titlelen = page.title.size -%}
-{%- if titlelen > 0 -%}
-<h2>{{ page.title }}</h2>
-{%- endif -%}
-<time datetime="{{ page.date }}">{{ page.date | date: site.theme_config.post_date_format }}</time> &nbsp; &nbsp; 
-  {%- for tag in page.tags -%}
-  {%- capture tag_name -%}{{ tag }}{%- endcapture -%}
-      <a href="{{ site.baseurl }}/tags/{{ tag_name }}.html" class="tag"><text><nobr>#{{ tag_name }}</nobr></text>&nbsp;</a>
-  {%- endfor -%}
-  
-<article>
-  {%- assign encid = "" | get_encrypt_id:page  -%}
-  {%- if  encid == '' -%}
-  {{ content }}
-  {%- else -%}
-  {%-include encrypted.html-%}
-  {%- endif -%}
-  
-  
-</article>
+
+{% include post_entry.html %}

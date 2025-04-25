@@ -225,12 +225,12 @@
       showRct = RCT == '1'
     }
     if(showRct){
-      create_heatmap('lmpRecent365' + g_id ++, '', dataObj, "Last 1Y", Recent365Count,node)
+      create_heatmap_lv('lmpRecent365' + g_id ++, '', dataObj, "Last 1Y", Recent365Count,node)
     }
     
     for (let i = 0; i < allYearArr.length; i++) {
       let y = allYearArr[i]
-      create_heatmap('lmp' + y + g_id ++ , y, dataObj,undefined,undefined,node)
+      create_heatmap_lv('lmp' + y + g_id ++ , y, dataObj,undefined,undefined,node)
     }
 
     node.style.display = 'none'
