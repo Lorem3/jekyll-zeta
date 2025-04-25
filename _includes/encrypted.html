@@ -30,7 +30,7 @@
 <div id="encrypted">
     <h3> {{ site.theme_config.encrypt_title | default : 'Content is Encrypted'}} </h3>
    
-    <input style="width:100%; " type="password" id="passwordinput" placeholder="输入密码"></input>
+    <input style="width:100%; " type="password" id="passwordinput" placeholder="输入密码" autocomplete="off"></input>
     <p>
         <input type="button" value= "{{ site.theme_config.decrypt_btn | default : 'Decrypt' }}" id="DecryptBtn"/>
         <input type="button" value= "{{ site.theme_config.encrypt_clear_btn | default: 'Clear password cache' }}" id="ClearBtn1"/>
