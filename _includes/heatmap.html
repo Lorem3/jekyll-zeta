@@ -42,11 +42,10 @@
 
     {% assign MothStr = site.theme_config.heatMapMonth  -%}
     {%- assign HeatMapShowWeek = site.theme_config.heatMapShowWeek  -%}
-    {%- assign heatMapLoadCount = site.theme_config.heatMapLoadCount | default: 8  %}
-    
-    const WeeKStartStr = "{{ site.theme_config.heatMapWeekStart | default: 0 }}" ;//  0 sunday 1 monday 2. tuesday ...
 
-    const heatMapLoadCount = {{heatMapLoadCount}};
+    
+    const WeeKStart = {{ site.theme_config.heatMapWeekStart | default: 1 }} ;//  0 sunday 1 monday 2. tuesday ...
+
     var _MonthStr =  '{{ MothStr | default: "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec" }}';
     var _showWeek =  '{{ HeatMapShowWeek | default: "Sun Mon Tue Wed Thu Fri Sat" }}';
     var _allyearurl =  '{{ "assets/dyn/allyear.json" | relative_url }}';
@@ -60,7 +59,7 @@
       endYear = '' + endYear + '-12-31'  
     }
     
-    const svgmap = createSVGMap(endYear)
+    const svgmap = createSVGMap(endYear,null,_MonthStr,_showWeek,WeeKStart)
 
     let father = document.getElementById(heatmapid)
     if (!father) {
@@ -70,9 +69,7 @@
     father.appendChild(svgmap.svg);
 
     const p = hm_getPostData(endYear,_allyearurl);
-    console.log(p)
     p.then(d=>{
-      console.log(d)
       svgmap.updateDays(d)
     })
  

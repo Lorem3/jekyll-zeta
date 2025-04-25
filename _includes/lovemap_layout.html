@@ -94,8 +94,12 @@
           endYear = '' + endYear + '-12-31'  
      }
 
-
-      const svgmap = createSVGMap(endYear,dataObj.beginDate)
+      {% assign MothStr = site.theme_config.heatMapMonth  -%}
+      {%- assign HeatMapShowWeek = site.theme_config.heatMapShowWeek  -%}
+      const WeeKStart =  {{ site.theme_config.heatMapWeekStart | default: 1 }} ;//  0 sunday 1 monday 2. tuesday ...
+      const _MonthStr =  '{{ MothStr | default: "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec" }}';
+      const _showWeek =  '{{ HeatMapShowWeek | default: "Sun Mon Tue Wed Thu Fri Sat" }}';
+      const svgmap = createSVGMap(endYear,dataObj.beginDate,_MonthStr,_showWeek,WeeKStart)
       container.appendChild(svgmap.svg);
       svgmap.updateDays(dataObj)
   }

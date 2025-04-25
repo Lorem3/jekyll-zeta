@@ -1,0 +1,11 @@
+{
+    "compress": {
+      "pure_funcs": ["console.log"]
+    },
+    "mangle": true,
+    "output": {
+      "max_line_len": 200
+    }
+    
+  }
+  
