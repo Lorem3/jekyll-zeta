@@ -1,7 +1,6 @@
 
 
-
-/*********** heatmap_svg.js ***********/
+/*********** heatmap_svg.js [0a20da5738]  ***********/
 
 function createSVGMap(t,e,n,r,i){const s=n.split(" "),o=r.split(" "),l=i||0;t?4==t.length&&(t=`${t}-12-31`):t=`${(new Date).getFullYear()}-12-31`;let u=new Date(v(new Date(t))),a=e?new Date(v(new Date(e))):e
 ;const d="http://www.w3.org/2000/svg",c=30,b=12,f="MP-"+Math.random().toString(16).substring(2),h=f+"days",m=f+"tip",A=u.getDay(),g=u.getTime(),p=364+(7+A-l)%7;var w=function(t){const e=new Date(t)
@@ -33,5 +32,3 @@ o.setAttribute("class","svg-day-1"),o.setAttribute("fill",1==a?d+"77":2==a?d+"aa
 o.setAttribute("stroke",""),o.setAttribute("stroke-width",""),B(o,-1)}}else{o.onmouseenter=function(){o.setAttribute("stroke","#000000"),o.setAttribute("stroke-width","1"),B(o,s,u)},o.onclick=o.onmouseenter,o.onmouseleave=function(){
 o.setAttribute("stroke",""),o.setAttribute("stroke-width",""),B(o,-1)};let t=o.dataset.ymd;if(t){let e=t.substring(5,7),n=Number(e)%2;o.setAttribute("fill",n?"#edebf0":"#edebf0aa")}else o.setAttribute("fill","#efefef")}}}!function(t){let e=t.length
 ;for(;0!=e;){let n=Math.floor(Math.random()*e);e--,[t[e],t[n]]=[t[n],t[e]]}}(s);var l=0;!function t(){if(l<s.length){const n=19;for(var e=0;e++<n;){if(l>=s.length)return;o(s[l++])}requestAnimationFrame(t)}}()}}}
-
-

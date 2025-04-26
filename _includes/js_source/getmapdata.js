@@ -1,5 +1,5 @@
 
-(function () {
+;(function () {
   var g_id = 100;
 
   function ymd2Date(ymd) {
@@ -11,10 +11,15 @@
     return new Date(year, month - 1, day); // month 从 0 开始
   };
 
-  function normalizeYmd(ymd){
+  function normalizeYmd(ymd,YearDefault){
     if (ymd) {
       const arr = ymd.split('-')
-      return `${arr[0]}-${arr[1].padStart(2,'0')}-${arr[2].padStart(2,'0')}`
+      if(arr.length == 3){
+        return `${arr[0]}-${arr[1].padStart(2,'0')}-${arr[2].padStart(2,'0')}`
+      }else if(arr.length == 2){
+        return `${YearDefault}-${arr[0].padStart(2,'0')}-${arr[1].padStart(2,'0')}`
+      }
+      
     }
 
     return ymd
@@ -45,7 +50,7 @@
     return `${t.getFullYear()}-${m < 10 ? "0" + m : m}-${d < 10 ? "0" + d : d}`;
   }
   /// 2025-01-01 描述，日期格式yyyy-mm-dd，空格后跟上 描述
-  function getDataFromSignleLine(str0,gData) {
+  function getDataFromSignleLine(str0,gData,YearDefault) {
     if(!str0) return null
     let str = str0.trim()
     if (!str) return null
@@ -60,14 +65,14 @@
       let arrRg = date0.split('~')
       let beginYmd = arrRg[0]
       let endYmd = arrRg[1]
-      let dateBegin = ymd2Date(normalizeYmd(beginYmd))
+      let dateBegin = ymd2Date(normalizeYmd(beginYmd,YearDefault))
       if (!dateBegin || isNaN(dateBegin)) {
         
         return
       }
       let rangCount = 7
       if(endYmd){
-         let dend = ymd2Date(normalizeYmd(endYmd))
+         let dend = ymd2Date(normalizeYmd(endYmd,YearDefault))
          if (dend && !isNaN(dend)) {
           rangCount = Math.floor((dend.getTime() - dateBegin.getTime())/ 86400000) + 1
          }
@@ -84,7 +89,7 @@
       for (let i  = 0; i  < rangCount; i ++) {
         const ymd = date2ymd(new Date(timeStampBegin + i * 86400000))
         const newStr = ymd + ' ' + desc
-        const newEle = getDataFromSignleLine(newStr)
+        const newEle = getDataFromSignleLine(newStr,null,YearDefault)
         if(newEle){
           resultArr.push(newEle)
         }
@@ -97,20 +102,31 @@
 
     let date = ''
     if (date0) {
-      let ymd = date0.split("-")
-      if (ymd.length == 3) {
-        let year = ymd[0]
-        let month = ymd[1]
-        let day = ymd[2]
-
-        let nY = Number(year)
-        let nM = Number(month)
-        let nD = Number(month)
-        if (isNaN(nY) || isNaN(nD) || isNaN(nM) || nY < 1900 || nY > 2100 || nM < 1 || nM > 12 || nD < 1 || nD > 31) {
-          return null
-        }
-        date = year + "-" + month.padStart(2, '0') + "-" + day.padStart(2, '0')
+        let ymdArr = date0.split("-")
+        let year = 0
+        let month = 0
+        let day = 0
+      if(YearDefault && ymdArr.length == 2){
+        year = YearDefault
+        month = ymdArr[0]
+        day = ymdArr[1]
       }
+      else if (ymdArr.length == 3) {
+        year = ymdArr[0]
+        month = ymdArr[1]
+        day = ymdArr[2]
+       
+      }else{
+        return
+      }
+
+      let nY = Number(year)
+      let nM = Number(month)
+      let nD = Number(month)
+      if (isNaN(nY) || isNaN(nD) || isNaN(nM) || nY < 1900 || nY > 2100 || nM < 1 || nM > 12 || nD < 1 || nD > 31) {
+        return null
+      }
+      date = year + "-" + month.padStart(2, '0') + "-" + day.padStart(2, '0')
     }
     else {
       return null
@@ -177,13 +193,15 @@
     let Recent365YMD = `${nowDate.getFullYear() - 1}-${(nowDate.getMonth() + 1).toString().padStart(2, '0')}-${nowDate.getDate().toString().padStart(2, '0')}`
  
 
+    let YearDefault = null
     strData.split("\n").forEach(function (str,idx) {
       if(idx == 0) return 
-      let item = getDataFromSignleLine(str,dataObj)
+      let item = getDataFromSignleLine(str,dataObj,YearDefault)
       if (item && Array.isArray(item)) {
         item.forEach(e=>{
           fillDataObj(dataObj, e)
           if (e) {
+            YearDefault = e.date.substring(0,4)
             if (e.date >= Recent365YMD) {
               Recent365Count++
             }
@@ -192,6 +210,7 @@
       }else{
         fillDataObj(dataObj, item)
         if (item) {
+          YearDefault = item.date.substring(0,4)
           if (item.date >= Recent365YMD) {
             Recent365Count++
           }

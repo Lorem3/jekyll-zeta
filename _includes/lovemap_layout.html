@@ -61,18 +61,14 @@
  
 
   <script >
+    {% include include_once.html files='getPostData.js heatmap_svg.js' %};
     function create_heatmap_lv(heatmapid,endYear,dataObj,title,count,node){
+ 
 
 
-      {%- include getPostData.js  -%}
-      
-      
-      
-      {%- include heatmap_svg.js  %}
-      /*******************************/
-      /*******************************/
-      /*******************************/
 
+      /*******************************/
+      
 
       let container =  document.createElement('div')
       container.className = 'map-container'
@@ -133,5 +129,5 @@
   
  <script> 
   
-  {%- include getmapdata.js %}
+  {%- include getmapdata.js -%}
   </script>
