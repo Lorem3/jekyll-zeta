@@ -23,16 +23,17 @@
   
 </div>
 {%- if datemapidOnPage == 0 -%}
-
 {% comment %}
   只加载一次
 {% endcomment %}
 <script >
-  {% include include_once.html files='getPostData.js heatmap_svg.js' %}
+ 
 
   function create_heatmap(heatmapid,endYear){
  
 
+    {% include getPostData.js %}
+    {% include heatmap_svg.js %}
 
     /**************************************/
     /***************Create Map***********************/
