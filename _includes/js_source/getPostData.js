@@ -66,6 +66,8 @@
 
 
     GDATA[queueFlgKey] = 1;
+
+   
     // console.log('RealQuery',year,Math.random())
     return fetch(`${jsonUrlBase}/${year}.json`)
       .then((r) => r.json())
@@ -82,6 +84,36 @@
         }
 
         return d})
+      .then(d=>{
+        /// 将extra 提取出来
+        if(d){
+          for (const key in d ) {
+            if (Object.prototype.hasOwnProperty.call(d , key)) {
+              const element = d [key];
+              
+              if (Array.isArray(element)) {
+                console.log(element)
+                element.forEach(postItem=>{
+                  const extraItem = postItem.extra;
+                  if(!extraItem) return 
+                  for (const key2 in extraItem) {
+                    if (Object.prototype.hasOwnProperty.call(extraItem, key2)) {
+                      const extraV = extraItem[key2];
+                      postItem[key2] = extraV
+
+                      console.log(key2,extraV,postItem)
+                    }
+                   
+                  }
+                })
+              }
+            }
+          }
+        }
+
+
+        return d 
+      })
       .catch((e) => {
         return null;
       });

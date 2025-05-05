@@ -1,9 +1,10 @@
 
 
-/*********** getPostData.js [ff49082e5f]  ***********/
+/*********** getPostData.js [e9ad72fa62]  ***********/
 
-function hm_getPostData(e,t){e=(""+e).substring(0,4);let n=t.split("/");n.pop();const r=n.join("/");var l=window.__GDATA__;l||(l={},window.__GDATA__);let a=window._y_queue||[];function i(e){if(l[e=""+e])return l[e]
-;let t="_singleyearFlg"+e,n="_singleyearQueue"+e;if(1==l[t]){let e=l[n];return e||(e=[],l[n]=e),new Promise((t=>{e.push(t)}))}return l[t]=1,fetch(`${r}/${e}.json`).then((e=>e.json())).then((r=>{l[t]=0,l[e]=r;let a=l[n]
-;return a&&a.length&&(a.forEach((e=>{e(r)})),a.length=0,l[n]=void 0),r})).catch((e=>null))}return window._y_queue=a,function(){let n=""+e,r=""+(Number(n)-1);return(l._allYear?l._allYear:1==window._isFetchAllYearData?new Promise((e=>{a.push(e)
-})):(window._isFetchAllYearData=1,fetch(t).then((e=>e.json())).then((e=>(window._isFetchAllYearData=0,a.length&&(a.forEach((t=>{t(e)})),a.length=0),l._allYear=e,e))))).then((e=>{let t=e,l=[];return t[n]&&l.push(i(n)),t[r]&&l.push(i(r)),
-Promise.all(l).then((e=>{let t={},n=e[0],r=e[1];return n&&n.year&&(t[n.year]=n),r&&r.year&&(t[r.year]=r),Promise.resolve(t)}))}))}()}
+function hm_getPostData(e,t){e=(""+e).substring(0,4);let r=t.split("/");r.pop();const n=r.join("/");var o=window.__GDATA__;o||(o={},window.__GDATA__);let l=window._y_queue||[];function a(e){if(o[e=""+e])return o[e]
+;let t="_singleyearFlg"+e,r="_singleyearQueue"+e;if(1==o[t]){let e=o[r];return e||(e=[],o[r]=e),new Promise((t=>{e.push(t)}))}return o[t]=1,fetch(`${n}/${e}.json`).then((e=>e.json())).then((n=>{o[t]=0,o[e]=n;let l=o[r]
+;return l&&l.length&&(l.forEach((e=>{e(n)})),l.length=0,o[r]=void 0),n})).then((e=>{if(e)for(const t in e)if(Object.prototype.hasOwnProperty.call(e,t)){const r=e[t];Array.isArray(r)&&r.forEach((e=>{const t=e.extra
+;if(t)for(const r in t)if(Object.prototype.hasOwnProperty.call(t,r)){const n=t[r];e[r]=n}}))}return e})).catch((e=>null))}return window._y_queue=l,function(){let r=""+e,n=""+(Number(r)-1)
+;return(o._allYear?o._allYear:1==window._isFetchAllYearData?new Promise((e=>{l.push(e)})):(window._isFetchAllYearData=1,fetch(t).then((e=>e.json())).then((e=>(window._isFetchAllYearData=0,l.length&&(l.forEach((t=>{t(e)})),l.length=0),o._allYear=e,
+e))))).then((e=>{let t=e,o=[];return t[r]&&o.push(a(r)),t[n]&&o.push(a(n)),Promise.all(o).then((e=>{let t={},r=e[0],n=e[1];return r&&r.year&&(t[r.year]=r),n&&n.year&&(t[n.year]=n),Promise.resolve(t)}))}))}()}
