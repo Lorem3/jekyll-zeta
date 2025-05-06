@@ -8,7 +8,7 @@
   var GDATA = window['__GDATA__'] 
   if (!GDATA) {
     GDATA = {}
-    window['__GDATA__'] 
+    window['__GDATA__'] = GDATA
   }
 
 
