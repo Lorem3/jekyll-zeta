@@ -12,8 +12,17 @@
   + encrytion support. Only those who know the password can view the article
 
   **IMPORTANT NOTE**
-  ONLY textual contents of article will be encrypted ,the pictures will  **NOT** be encrypted
+  ~~ONLY textual contents of article will be encrypted ,the pictures will  **NOT** be encrypted~~
 
+  **image will be encrypt by using asset_img tag `v0.11.6`**
+  > name your sensitive img as name.sec.png 
+  > add exclude config 
+    
+```
+exclude:
+      - "**/*.sec.*"
+      - - "*.sec.*"
+```
   
   #### how to encrypt your post
       1. generate your own public & private key to protect your password
@@ -26,7 +35,7 @@ publickey: AAA
 privatekey: BBBBB
   ```
 
-      2. encrypt your password 
+      1. encrypt your password 
 
 
   ``` bash
