@@ -1,0 +1,2 @@
+{% assign secfile = include.file%}
+<img src="data:image/jpeg;base64,{% file_base64 file=secfile %}">
