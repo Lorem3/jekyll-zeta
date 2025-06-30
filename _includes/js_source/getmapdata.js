@@ -89,7 +89,8 @@
       for (let i  = 0; i  < rangCount; i ++) {
         const ymd = date2ymd(new Date(timeStampBegin + i * 86400000))
         const newStr = ymd + ' ' + desc
-        const newEle = getDataFromSignleLine(newStr,null,YearDefault)
+        const newEle = getDataFromSignleLine(newStr,gData,YearDefault)
+        console.log('newDesc',newStr,newEle)
         if(newEle){
           resultArr.push(newEle)
         }
@@ -149,8 +150,9 @@
       else{
         color = (gData && gData.color )|| '#40c463'
       }
-
     }
+
+    color = color || (gData && gData.color )|| '#40c463'
     return { date: date, title: title ,color}
   }
 
