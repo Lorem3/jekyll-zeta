@@ -146,6 +146,9 @@
         color = colorScaned[0]
         title = title.replace(regColor,'')
       }
+      else{
+        color = (gData && gData.color )|| '#40c463'
+      }
 
     }
     return { date: date, title: title ,color}

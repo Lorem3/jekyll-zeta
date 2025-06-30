@@ -22,8 +22,7 @@
 exclude:
       - "**/*.sec.*"
       - - "*.sec.*"
-```
-  
+```  
   #### how to encrypt your post
       1. generate your own public & private key to protect your password
 ```
