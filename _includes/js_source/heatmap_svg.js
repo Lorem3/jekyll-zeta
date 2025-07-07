@@ -223,7 +223,7 @@
 
           node.setAttribute("class", "svg-day-1");
           node.setAttribute(
-            "fill",
+            "fill",colorSet && colorSet.length == 9 ? colorSet :  //  直接指定了透明度 ，#ff0000ff,不跟进count
             c == 1
               ? colorSet + "77"
               : c == 2

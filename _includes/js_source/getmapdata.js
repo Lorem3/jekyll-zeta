@@ -90,7 +90,6 @@
         const ymd = date2ymd(new Date(timeStampBegin + i * 86400000))
         const newStr = ymd + ' ' + desc
         const newEle = getDataFromSignleLine(newStr,gData,YearDefault)
-        console.log('newDesc',newStr,newEle)
         if(newEle){
           resultArr.push(newEle)
         }
@@ -141,7 +140,7 @@
     if (arr.length > 1) {
       title = arr.slice(1).join(" ")
 
-      const regColor = /#[0-9a-fA-F]{6}/
+      const regColor = /#[0-9a-fA-F]{6,8}/
       let colorScaned = regColor.exec(title)
       if (colorScaned && colorScaned.length) {
         color = colorScaned[0]
