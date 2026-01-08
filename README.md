@@ -1,81 +1,93 @@
 # jekyll-zeta
 
-[demo page](https://vitock.github.io/jekyll-zeta/)
+[demo page](https://jekyll-zeta.pages.dev/)
 ![](preview.png)
  
 ## Features
 
+- **Pagination support** - Built-in pagination for blog posts
+- **Tags support** - Organize and categorize your posts with tags
+- **MathJax support** - Render mathematical expressions with MathJax
+- **Code inclusion support** - Include code snippets in your posts
+- **Post linking** - Link to other posts within your blog
+- **Encryption support** - Protect sensitive content with password-based encryption. Only users with the correct password can view encrypted articles
 
-  + paginate support
-  + tags support 
-  + mathjax , inluce_code post_link support, include  support, link to other post 
-  + encrytion support. Only those who know the password can view the article
+### Encryption Feature
 
-  **IMPORTANT NOTE**
-  ~~ONLY textual contents of article will be encrypted ,the pictures will  **NOT** be encrypted~~
+**Important Note**: 
+- ~~Only textual content of articles will be encrypted; images will **NOT** be encrypted~~
+- **Images can be encrypted** using the `asset_img` tag (available from `v0.11.6`)
 
-  **image will be encrypt by using asset_img tag `v0.11.6`**
-  > name your sensitive img as name.sec.png 
-  > add exclude config 
-    
-```
+To encrypt images:
+1. Name your sensitive images with the `.sec` extension (e.g., `name.sec.png`)
+2. Add the following exclude configuration to your `_config.yml`:
+
+```yaml
 exclude:
-      - "**/*.sec.*"
-      - - "*.sec.*"
-```  
-  #### how to encrypt your post
-      1. generate your own public & private key to protect your password
+  - "**/*.sec.*"
+  - "*.sec.*"
 ```
+
+#### How to Encrypt Your Posts
+
+1. **Generate your public and private keys** to protect your password:
+
+```bash
 ltectool g
 ```
-    you will get 
-  ```
+
+You will receive output similar to:
+
+```
 publickey: AAA
 privatekey: BBBBB
-  ```
+```
 
-      1. encrypt your password 
+2. **Encrypt your password** using the public key:
 
+```bash
+# ltectool e [your publickey] [your password]
+# Example:
+ltectool e Arkuf0hG0sjifj+G57o4gwPgnXXD72kIhjhSGjyyGCdS 123
 
-  ``` bash
-   # ltectool e [your publickey] [your password]
-   # like below
-   ltectool e Arkuf0hG0sjifj+G57o4gwPgnXXD72kIhjhSGjyyGCdS 123
-
-   # output
+# Output:
 AQAQACAAIQCVKE9YHFT4pzyMa84kqGK+4Olo3EeDlymDa0oZcsQ48j8S4D4fMFb37gUT4LgrxZQDCFLa402i9VhhMIYWXZP+WSsv2Ia+uQpEH5vYKgDR5vL4xXC/76wXl3K7abU7u9du
+```
 
-  ```
-   you get your encrypted password ,
-   then put it in  `_config.yml`
+3. **Add the encrypted password** to your `_config.yml`:
 
 ```yaml
 enc_tags:
-    - tag: encrypt1 
-      password: "123"  # plain text ,NOT recommended
+  - tag: encrypt1
+    password: "123"  # Plain text - NOT recommended
 
-    - tag: encrypt2
-      # 123
-      password: AQAQACAAIQCVKE9YHFT4pzyMa84kqGK+4Olo3EeDlymDa0oZcsQ48j8S4D4fMFb37gUT4LgrxZQDCFLa402i9VhhMIYWXZP+WSsv2Ia+uQpEH5vYKgDR5vL4xXC/76wXl3K7abU7u9du
+  - tag: encrypt2
+    # 123
+    password: AQAQACAAIQCVKE9YHFT4pzyMa84kqGK+4Olo3EeDlymDa0oZcsQ48j8S4D4fMFb37gUT4LgrxZQDCFLa402i9VhhMIYWXZP+WSsv2Ia+uQpEH5vYKgDR5vL4xXC/76wXl3K7abU7u9du
 ```
-   add JEKYLL_EC_PRIVATEKEY to ENV   before you run jekyll build 
-   or set JEKYLL_EC_PRIVATEKEY to your CI environment
-   ``` bash
-    #export set JEKYLL_EC_PRIVATEKEY=[Private key]
-    export set JEKYLL_EC_PRIVATEKEY="NWWtiQbDnSDvTdogCzAjqNqHGTZrRXdmXQrEKiv3vNs="
-   ```
 
-**for security, I recommend you to use different repos to store your source files and the `_site` files**   
+4. **Set the private key** as an environment variable before running `jekyll build`, or configure it in your CI environment:
 
-+ ### origin:
-  * Fast (**1kb of CSS!** For more information on performance and more, see [Page Speed Insights report](https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/page-speed-insights-report.png) and [Lighthouse report](https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/lighthouse-report.png))
-  * Light, dark and auto modes
-  * Responsive
-  * Content first (typography optimized for maximum readability)
-  * ~~SEO optimized (uses [Jekyll SEO Tag](https://github.com/jekyll/jekyll-seo-tag))~~
-  * ~~RSS feed (uses [Jekyll Feed](https://github.com/jekyll/jekyll-feed))~~
-  * ~~Fully compatible with [GitHub Pages](https://pages.github.com/) (see [GitHub Pages installation](#github-pages-installation))~~
-  > you should build the _site by yourself , because githubpage do not support all plugins
+```bash
+# export JEKYLL_EC_PRIVATEKEY=[Private key]
+export JEKYLL_EC_PRIVATEKEY="NWWtiQbDnSDvTdogCzAjqNqHGTZrRXdmXQrEKiv3vNs="
+```
+
+**Security Recommendation**: For enhanced security, use separate repositories to store your source files and the `_site` files.   
+
+### Origin
+
+This theme is based on a minimal, performance-focused design with the following characteristics:
+
+- **Fast** - **1KB of CSS!** For more information on performance, see the [Page Speed Insights report](https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/page-speed-insights-report.png) and [Lighthouse report](https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/lighthouse-report.png)
+- **Light, dark, and auto modes** - Automatic theme switching based on system preferences
+- **Responsive** - Optimized for all device sizes
+- **Content-first** - Typography optimized for maximum readability
+- ~~SEO optimized (uses [Jekyll SEO Tag](https://github.com/jekyll/jekyll-seo-tag))~~
+- ~~RSS feed (uses [Jekyll Feed](https://github.com/jekyll/jekyll-feed))~~
+- ~~Fully compatible with [GitHub Pages](https://pages.github.com/) (see [GitHub Pages installation](#github-pages-installation))~~
+
+> **Note**: You should build the `_site` directory yourself, as GitHub Pages does not support all Jekyll plugins.
 
 
 
@@ -83,7 +95,7 @@ enc_tags:
 
 If you haven't already created your blog using Jekyll, follow the [instructions](https://jekyllrb.com/docs/) to do so from Jekyll's documentation.
 
-NOTE: if you are using Jekyll with GitHub Pages, see the [GitHub Pages installation section](#github-pages-installation).
+**Note**: If you are using Jekyll with GitHub Pages, see the [GitHub Pages installation section](#github-pages-installation).
 
 Then, to style your blog with this theme, add this line to your Jekyll site's `Gemfile`:
 
@@ -105,18 +117,18 @@ Or install it yourself as:
 
     $ gem install jekyll-zeta
  
-### Customize the menu
+### Customize the Menu
 
+Edit the `theme_config > menu` section in `_config.yml`.
 
-edit the `theme_config > menu` in  _config.yml .
+Below is the default configuration:
 
-here bellow is the default value
-``` yml
+```yaml
 theme_config:
   menu:
     - title: Home
       url: /
-    - title: Achive
+    - title: Archive
       url: /archive.html
     - title: Tags
       url: /tags.html
@@ -125,9 +137,11 @@ theme_config:
 ```
 
 
- ### Show all tags
-create a `tags.md` with content below
-``` yml
+### Show All Tags
+
+1. Create a `tags.md` file with the following content:
+
+```yaml
 ---
 title: TAGS
 layout: tags
@@ -135,8 +149,9 @@ permalink: /tags/index.html
 ---
 ```
 
-add a entry in the _data/menu.yml
-``` yml
+2. Add an entry to `_data/menu.yml`:
+
+```yaml
 - title: tags
   url: tags
 ```
