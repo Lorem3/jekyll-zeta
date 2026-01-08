@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en"  _g_date="2026-01-08 00:24:29 +0000" >
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" /><title>Archive Title</title><link rel="shortcut icon" type="image/x-icon" href="/logo.png" /><link rel="stylesheet" href="/assets/css/left.css" />
+  
+
+  <script>
+    setTimeout(() => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '//no-style.kr7y.workers.dev/zeta.css?6e55436e97';
+      link.type = 'text/css';
+      document.head.appendChild(link);
+    }, 500);
+  </script>
+</head><body a="auto">
+    <main class="page-content" aria-label="Content"><header><div class="sidebar">
+
+<div class="sidecontent">
+<div class="avatar-title">
+  <a href="/"  ><img src="/assets/image/avatar.png"  class="avatar"/> </a>
+
+  <a href="/" class="nav-title"  > jekyll-zeta! </a>
+</div>
+
+
+
+<nav>
+  <ul class="navul">
+      <li class="navli">
+
+      <a href="/" class="nav">Posts</a></li>
+      <li class="navli curNav">
+
+      <a href="/archive.html" class="nav">Achive</a></li>
+      <li class="navli">
+
+      <a href="/tags.html" class="nav">Tags</a></li>
+      <li class="navli">
+
+      <a href="/about.html" class="nav">About</a></li>
+      <li class="navli">
+
+      <a href="/happylife.html" class="nav">Happy Life</a></li></ul>
+</nav>
+
+
+</div>
+
+
+</div></header>
+<section class="rightsidecontent">
+<div class="w">
+    
+    <!-- <h2>Archive Title</h2> --><ul class="postlistul">
+         <div class=archive-map>
+
+
+<div>
+<div class="heatmap-title">2025</div>
+
+<div class='heatmap' id="heatmap-0">
+  
+</div>
+<script >
+ 
+
+  function create_heatmap(heatmapid,endYear){
+ 
+
+    
+
+/*********** getPostData.js [8da32e17fc]  ***********/
+
+function hm_getPostData(e,t){e=(""+e).substring(0,4);let r=t.split("/");r.pop();const n=r.join("/");var o=window.__GDATA__;o||(o={},window.__GDATA__=o);let l=window._y_queue||[];function a(e){if(o[e=""+e])return o[e]
+;let t="_singleyearFlg"+e,r="_singleyearQueue"+e;if(1==o[t]){let e=o[r];return e||(e=[],o[r]=e),new Promise((t=>{e.push(t)}))}return o[t]=1,fetch(`${n}/${e}.json`).then((e=>e.json())).then((n=>{o[t]=0,o[e]=n;let l=o[r]
+;return l&&l.length&&(l.forEach((e=>{e(n)})),l.length=0,o[r]=void 0),n})).then((e=>{if(e)for(const t in e)if(Object.prototype.hasOwnProperty.call(e,t)){const r=e[t];Array.isArray(r)&&r.forEach((e=>{const t=e.extra
+;if(t)for(const r in t)if(Object.prototype.hasOwnProperty.call(t,r)){const n=t[r];e[r]=n}}))}return e})).catch((e=>null))}return window._y_queue=l,function(){let r=""+e,n=""+(Number(r)-1)
+;return(o._allYear?o._allYear:1==window._isFetchAllYearData?new Promise((e=>{l.push(e)})):(window._isFetchAllYearData=1,fetch(t).then((e=>e.json())).then((e=>(window._isFetchAllYearData=0,l.length&&(l.forEach((t=>{t(e)})),l.length=0),o._allYear=e,
+e))))).then((e=>{let t=e,o=[];return t[r]&&o.push(a(r)),t[n]&&o.push(a(n)),Promise.all(o).then((e=>{let t={},r=e[0],n=e[1];return r&&r.year&&(t[r.year]=r),n&&n.year&&(t[n.year]=n),Promise.resolve(t)}))}))}()}
+
+    
+
+/*********** heatmap_svg.js [f6e16cf46a]  ***********/
+
+function createSVGMap(t,e,n,r,i){const s=n.split(" "),o=r.split(" "),l=i||0;t?4==t.length&&(t=`${t}-12-31`):t=`${(new Date).getFullYear()}-12-31`;let u=new Date(v(new Date(t))),a=e?new Date(v(new Date(e))):e
+;const d="http://www.w3.org/2000/svg",c=30,b=12,f="MP-"+Math.random().toString(16).substring(2),h=f+"days",m=f+"tip",A=u.getDay(),g=u.getTime(),p=364+(7+A-l)%7;var w=function(t){const e=new Date(t)
+;let n=e.getFullYear()-1,r=e.getMonth()+1,i=e.getDate();return`${n}-${r<10?"0"+r:r}-${i<10?"0"+i:i}`}(g);const y=p-Math.floor((g-new Date(w))/864e5)+1,x=p-Math.floor((g-new Date(v(new Date)))/864e5),k=a?p-Math.floor((g-a.getTime())/864e5):-1
+;function C(t){return v(new Date(g-36e5*(p-t)*24))}function v(t){let e=t.getMonth()+1,n=t.getDate();return`${t.getFullYear()}-${e<10?"0"+e:e}-${n<10?"0"+n:n}`}function N(t){const e=document.createElementNS(d,"rect");e.setAttribute("width","12"),
+e.setAttribute("height","12"),e.setAttribute("rx","1"),e.setAttribute("ry","1"),e.setAttribute("fill","#eef7f2");const n=Math.floor(t/7),r=t-7*n,i=12*n+2*n,o=r*b+2*r;e.setAttribute("x",""+i),e.setAttribute("y",""+o),e.dataset.x=i,e.dataset.y=o
+;let l=C(t);e.dataset.ymd=l,e.id="day-item-"+l;let u=l.substring(5,7);if(l.substring(8,10)<="07"&&t%7==0){let e=s[Number(u)-1],n=document.createElementNS(d,"text");n.setAttribute("y","22"),n.setAttribute("x",i),n.textContent=e,
+n.setAttribute("fill",t>x?"#878787":"#113"),n.setAttribute("font-size","13"),n.setAttribute("font-family","monospace"),E.appendChild(n)}return e}const S=document.createElementNS(d,"svg");S.id=f,S.setAttribute("width","787"),
+S.setAttribute("height","148"),S.style.overflow="visible";let D=document.createElementNS(d,"defs")
+;D.innerHTML='\n    <pattern id="fillA" patternUnits="userSpaceOnUse" width="3" height="3">\n        <path d="M 0 0 L 6 6" stroke="#ccc" stroke-width="1"/>\n    </pattern>\n\n    <pattern id="fillB" patternUnits="userSpaceOnUse" width="6" height="6">\n        <path d="M 0 6 L 6 0" stroke="#bbb" stroke-width="1"/>\n    </pattern>\n  ',
+S.appendChild(D);const E=document.createElementNS(d,"g");E.setAttribute("transform","translate(35, 0)"),S.appendChild(E);const M=document.createElementNS(d,"g");function $(t,e){let n=document.createElementNS(d,"text");n.textContent=t,
+n.setAttribute("font-family","monospace"),n.setAttribute("font-size","13"),n.setAttribute("fill","#333"),n.setAttribute("width","45"),n.setAttribute("height","12"),n.setAttribute("x","5");const r=14*e+10;return n.setAttribute("y",""+r),
+M.appendChild(n),n}M.setAttribute("transform","translate(0, 30)"),S.appendChild(M),$(o[(l+1)%7],1),$(o[(l+3)%7],3),$(o[(l+5)%7],5);const F=document.createElementNS(d,"g");F.id=h,F.setAttribute("transform","translate(35, 30)"),S.appendChild(F)
+;const z=document.createDocumentFragment();for(let t=0;t<371;t++){const e=N(t);e&&z.appendChild(e)}F.appendChild(z);const T=document.createElementNS(d,"text");T.setAttribute("y","138 "),T.setAttribute("x","777"),T.setAttribute("fill","#999999"),
+T.setAttribute("font-size","15"),T.setAttribute("font-family","monospace"),T.setAttribute("text-anchor","end"),T.setAttribute("dominant-baseline","middle"),S.appendChild(T);const L=C(y)
+;L.substring(0,4)==t.substring(0,4)?T.textContent=L.substring(0,4):T.textContent=` ~ ${t}`;const U=document.createElementNS(d,"g");U.id=m,S.appendChild(U);var Y={showFlag:0,idx:-1};function B(t,e,n){if(e<0)return Y.showFlag=0,void setTimeout((()=>{
+0==Y.showFlag&&(U.style.display="none")}),50);if(2==Y.showFlag)return;Y.showFlag=1,Y.idx=e,U.innerHTML="",U.style.display="block";const r=n?0:1;n||(n=[{date:t.dataset.ymd}]),U.setAttribute("class","svg-hm-day-tip");var i
+;const s=n.length,o=20+25*s+"",l=document.createDocumentFragment();let u=document.createElementNS(d,"rect");u.setAttribute("fill","#333333cc"),u.setAttribute("height",o),u.setAttribute("rx","5"),u.setAttribute("ry","5"),l.append(u),
+U.onmouseenter=function(){r||(Y.showFlag=2)},U.onmouseleave=function(){Y.showFlag=0,U.style.display="none"};let a=0;n.forEach(((t,e)=>{let n=t.date.substring(5,7),r=t.date.substring(8,10);n=n.startsWith("0")?n.substring(1):n,
+r=r.startsWith("0")?r.substring(1):r;const i=`${n}-${r} ${t.title||""}`;i.length>a&&(a=i.length);const s=document.createElementNS(d,"text");if(s.textContent=i,s.setAttribute("fill","#fff"),s.setAttribute("font-size","16"),
+s.setAttribute("font-family","monospace"),s.setAttribute("x","10"),t.url){const n="http://www.w3.org/1999/xlink",r=document.createElementNS(d,"a");r.setAttributeNS(n,"xlink:href",t.url),r.setAttribute("target","_blank"),
+s.setAttribute("y",""+(10+25*e+18)),r.appendChild(s),l.appendChild(r)}else s.setAttribute("y",""+(10+25*e+15)),l.appendChild(s)})),i=14.55*a+25,u.setAttribute("width",i),U.appendChild(l);const b=e%7,f=35+14*((e-b)/7)+6-i/2,h=c+14*b-o-2
+;U.setAttribute("transform",`translate(${f}, ${h})`)}return{svg:S,updateDays:function(t){const e=t.color||"#40c463",n=document.createElementNS(d,"tspan");n.setAttribute("font-size","12"),n.setAttribute("dy","0"),n.setAttribute("dx","10"),
+n.setAttribute("fill","#888888"),n.setAttribute("font-family","courier"),n.textContent="",T.append(n);let r=0,i=F.childNodes,s=new Array(371);for(let t=0;t<371;t++)s[t]=t;function o(s){let o=i[s];if(o){
+if(s<y||s>p)return void o.setAttribute("display","none");let i=o.dataset.ymd.substring(5,7),l=Number(i)%2,u=function(e,n){let r=n.substring(0,4),i=n.substring(5,7),s=t[r];if(s&&s[i]){let t=s[i].filter((t=>t.date==n));return t&&t.length?t:null}
+return null}(0,o.dataset.ymd);if(u&&u.length&&(r+=u.length,n.textContent=`x ${r}`),!u&&(s>x||s<k))return o.setAttribute("fill",l?"url(#fillB)":"url(#fillA)"),o.onmouseenter=function(){o.setAttribute("stroke","#000000"),
+o.setAttribute("stroke-width","1"),B(o,s,u)},o.onclick=o.onmouseenter,void(o.onmouseleave=function(){o.setAttribute("stroke",""),o.setAttribute("stroke-width",""),B(o,-1)});const a=u&&u.length;let d=e;if(a){let t=u.find((t=>t.color));t&&(d=t.color),
+o.setAttribute("class","svg-day-1"),o.setAttribute("fill",d&&9==d.length?d:1==a?d+"77":2==a?d+"aa":d+"ff"),o.onmouseenter=function(){o.setAttribute("stroke","#000000"),o.setAttribute("stroke-width","1"),B(o,s,u)},o.onclick=o.onmouseenter,
+o.onmouseleave=function(){o.setAttribute("stroke",""),o.setAttribute("stroke-width",""),B(o,-1)}}else{o.onmouseenter=function(){o.setAttribute("stroke","#000000"),o.setAttribute("stroke-width","1"),B(o,s,u)},o.onclick=o.onmouseenter,
+o.onmouseleave=function(){o.setAttribute("stroke",""),o.setAttribute("stroke-width",""),B(o,-1)};let t=o.dataset.ymd;if(t){let e=t.substring(5,7),n=Number(e)%2;o.setAttribute("fill",n?"#edebf0":"#edebf0aa")}else o.setAttribute("fill","#efefef")}}}
+!function(t){let e=t.length;for(;0!=e;){let n=Math.floor(Math.random()*e);e--,[t[e],t[n]]=[t[n],t[e]]}}(s);var l=0;!function t(){if(l<s.length){const n=19;for(var e=0;e++<n;){if(l>=s.length)return;o(s[l++])}requestAnimationFrame(t)}}()}}}
+
+
+    /**************************************/
+    /***************Create Map***********************/
+    /**************************************/
+
+
+
+    const WeeKStart = 1 ;//  0 sunday 1 monday 2. tuesday ...
+
+    var _MonthStr =  'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec';
+    var _showWeek =  'Sun Mon Tue Wed Thu Fri Sat';
+    var _allyearurl =  '/assets/dyn/allyear.json';
+   
+
+
+    if (!endYear) {
+      let now = new Date()
+      endYear = `${now.getFullYear()}-${(101 + now.getMonth()).toString().substring(1)}-${(100 + now.getDate()).toString().substring(1)}`
+    }else if(('' + endYear).length == 4 ){
+      endYear = '' + endYear + '-12-31'  
+    }
+    
+    const svgmap = createSVGMap(endYear,null,_MonthStr,_showWeek,WeeKStart)
+
+    let father = document.getElementById(heatmapid)
+    if (!father) {
+      console.error('no father')
+      return
+    }
+    father.appendChild(svgmap.svg);
+
+    const p = hm_getPostData(endYear,_allyearurl);
+    p.then(d=>{
+      svgmap.updateDays(d)
+    })
+ 
+
+
+ 
+  }
+</script>
+
+
+
+<script> 
+!function(){
+  var endYear = "2025"
+  var mapid = "heatmap-0"
+  create_heatmap(mapid,endYear )
+}()
+</script>
+
+</div></div ><ul class="postlistul"><li class="postlistli">
+      <date datetime="2025-05-13 10:07:50 +0000">05/13</date><div >
+          <a href="/post/2025/05/13/TE.html ">img encrypt</a><text class="iconchar"> 🔑 </text></div></li><li class="postlistli">
+      <date datetime="2025-04-24 09:59:19 +0000">04/24</date><a href="/post/2025/04/24/mapdata.html">mapdata</a></li></ul>
+         <div class=archive-map>
+
+
+<div>
+<div class="heatmap-title">2024</div>
+
+<div class='heatmap' id="heatmap-1">
+  
+</div>
+
+<script> 
+!function(){
+  var endYear = "2024"
+  var mapid = "heatmap-1"
+  create_heatmap(mapid,endYear )
+}()
+</script>
+
+</div></div ><ul class="postlistul"><li class="postlistli">
+      <date datetime="2024-12-30 09:04:25 +0000">12/30</date><a href="/Proctect-your-password">Proctect your password</a></li><li class="postlistli">
+      <date datetime="2024-11-29 13:46:41 +0000">11/29</date><a href="/post/2024/11/29/xx.html">hideNavBar Test</a></li><li class="postlistli">
+      <date datetime="2024-11-22 18:35:05 +0000">11/22</date><a href="/post/2024/11/22/heatmap.html">HeatMap</a></li><li class="postlistli">
+      <date datetime="2024-11-19 08:54:22 +0000">11/19</date><a href="/post/2024/11/19/%E4%B8%AD%E6%96%87.html">沙扬娜拉</a></li><li class="postlistli">
+      <date datetime="2024-09-14 19:00:58 +0000">09/14</date><div >
+          <a href="/post/2024/09/14/encrypt-blog-2.html ">encrypt blog 2:12345 or abcd</a><text class="iconchar"> 🔑 </text></div></li><li class="postlistli">
+      <date datetime="2024-05-16 18:55:32 +0000">05/16</date><div >
+          <a href="/post/2024/05/16/encrypted-blog-123.html ">加密的Post，密码:abc</a><text class="iconchar"> 🔑 </text></div></li></ul>
+         <div class=archive-map>
+
+
+<div>
+<div class="heatmap-title">2023</div>
+
+<div class='heatmap' id="heatmap-2">
+  
+</div>
+
+<script> 
+!function(){
+  var endYear = "2023"
+  var mapid = "heatmap-2"
+  create_heatmap(mapid,endYear )
+}()
+</script>
+
+</div></div ><ul class="postlistul"><li class="postlistli">
+      <date datetime="2023-12-27 08:54:22 +0000">12/27</date><a href="/post/2023/12/27/mathjax&link.html">公式 MathJax link</a></li></ul>
+         <div class=archive-map>
+
+
+<div>
+<div class="heatmap-title">2020</div>
+
+<div class='heatmap' id="heatmap-3">
+  
+</div>
+
+<script> 
+!function(){
+  var endYear = "2020"
+  var mapid = "heatmap-3"
+  create_heatmap(mapid,endYear )
+}()
+</script>
+
+</div></div ><ul class="postlistul"><li class="postlistli">
+      <date datetime="2020-07-09 00:00:00 +0000">07/09</date><a href="/post/2020/07/09/hr-example.html">Post Example With Hr</a></li><li class="postlistli">
+      <date datetime="2020-07-09 00:00:00 +0000">07/09</date><a href="/post/2020/07/09/post-example-with-headings-and-toc.html">Post Example With Headings And Toc</a></li><li class="postlistli">
+      <date datetime="2020-07-08 00:00:00 +0000">07/08</date><a href="/post/2020/07/08/very-very-very-long-title-and-very-very-very-short-content.html">Very Very Very Long Title And Very Very Very Short Content</a></li><li class="postlistli">
+      <date datetime="2020-07-08 00:00:00 +0000">07/08</date><a href="/post/2020/07/08/language-tests.html">Language Tests</a></li><li class="postlistli">
+      <date datetime="2020-07-07 00:00:00 +0000">07/07</date><a href="/post/2020/07/07/overview-post.html">Overview Post</a></li></ul>
+         <div class=archive-map>
+
+
+<div>
+<div class="heatmap-title">2016</div>
+
+<div class='heatmap' id="heatmap-4">
+  
+</div>
+
+<script> 
+!function(){
+  var endYear = "2016"
+  var mapid = "heatmap-4"
+  create_heatmap(mapid,endYear )
+}()
+</script>
+
+</div></div ><ul class="postlistul"><li class="postlistli">
+      <date datetime="2016-10-19 08:54:22 +0000">10/19</date><a href="/post/2016/10/19/strange-post.html">Strange Post</a></li></ul><footer class="footer">
+      <p> Powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://github.com/vitock/jekyll-zeta">Jekyll-zeta</a>
+     </p>
+    </footer></div>
+</section></main></body>
+</html>

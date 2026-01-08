@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en"  _g_date="2026-01-08 00:24:29 +0000" >
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" /><title>图 psw:12345</title><link rel="shortcut icon" type="image/x-icon" href="/logo.png" /><link rel="stylesheet" href="/assets/css/left.css" />
+  
+
+  <script>
+    setTimeout(() => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '//no-style.kr7y.workers.dev/zeta.css?0a2d13819e';
+      link.type = 'text/css';
+      document.head.appendChild(link);
+    }, 500);
+  </script>
+</head><body a="auto">
+    <main class="page-content" aria-label="Content"><header><div class="sidebar">
+
+<div class="sidecontent">
+<div class="avatar-title">
+  <a href="/"  ><img src="/assets/image/avatar.png"  class="avatar"/> </a>
+
+  <a href="/" class="nav-title"  > jekyll-zeta! </a>
+</div>
+
+
+
+<nav>
+  <ul class="navul">
+      <li class="navli">
+
+      <a href="/" class="nav">Posts</a></li>
+      <li class="navli">
+
+      <a href="/archive.html" class="nav">Achive</a></li>
+      <li class="navli">
+
+      <a href="/tags.html" class="nav">Tags</a></li>
+      <li class="navli">
+
+      <a href="/about.html" class="nav">About</a></li>
+      <li class="navli curNav">
+
+      <a href="/happylife.html" class="nav">Happy Life</a></li></ul>
+</nav>
+
+
+</div>
+
+
+</div></header>
+<section class="rightsidecontent">
+<div class="w">
+    
+    <h2>图 psw:12345</h2><time datetime=""></time> &nbsp; &nbsp;<a href="/tags/happy_life_non.html" class="tag"><text><nobr>#happy_life_non</nobr></text>&nbsp;</a><a href="/tags/encrypt1_none.html" class="tag"><text><nobr>#encrypt1_none</nobr></text>&nbsp;</a><br/>
+
+
+
+<style>
+  .custom-map-title{
+    margin: 0;
+    font-size: 1.5em;
+    color: #444455;
+  }
+
+  .map-container{
+    padding-bottom: 4em;
+  }
+  .lv-year{
+    
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .lv-year-title{
+    font-weight: bold;
+    font-size: 1.5em; 
+    display: inline-block;
+    color: #aaa;
+    
+  }
+  .lv-year-count{
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1.2em;
+    color: #aaa;
+    
+  }
+  .lv-year-count::before{
+    content: "x";
+    margin-left: 1em;
+    margin-right: 0.2em;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #aaa;
+  }
+
+  #loveiContainer{
+    margin-bottom: 2em;
+  }
+
+</style>
+
+ 
+
+  <script >
+    function create_heatmap_lv(heatmapid,endYear,dataObj,title,count,node){
+
+      
+
+/*********** getPostData.js [8da32e17fc]  ***********/
+
+function hm_getPostData(e,t){e=(""+e).substring(0,4);let r=t.split("/");r.pop();const n=r.join("/");var o=window.__GDATA__;o||(o={},window.__GDATA__=o);let l=window._y_queue||[];function a(e){if(o[e=""+e])return o[e]
+;let t="_singleyearFlg"+e,r="_singleyearQueue"+e;if(1==o[t]){let e=o[r];return e||(e=[],o[r]=e),new Promise((t=>{e.push(t)}))}return o[t]=1,fetch(`${n}/${e}.json`).then((e=>e.json())).then((n=>{o[t]=0,o[e]=n;let l=o[r]
+;return l&&l.length&&(l.forEach((e=>{e(n)})),l.length=0,o[r]=void 0),n})).then((e=>{if(e)for(const t in e)if(Object.prototype.hasOwnProperty.call(e,t)){const r=e[t];Array.isArray(r)&&r.forEach((e=>{const t=e.extra
+;if(t)for(const r in t)if(Object.prototype.hasOwnProperty.call(t,r)){const n=t[r];e[r]=n}}))}return e})).catch((e=>null))}return window._y_queue=l,function(){let r=""+e,n=""+(Number(r)-1)
+;return(o._allYear?o._allYear:1==window._isFetchAllYearData?new Promise((e=>{l.push(e)})):(window._isFetchAllYearData=1,fetch(t).then((e=>e.json())).then((e=>(window._isFetchAllYearData=0,l.length&&(l.forEach((t=>{t(e)})),l.length=0),o._allYear=e,
+e))))).then((e=>{let t=e,o=[];return t[r]&&o.push(a(r)),t[n]&&o.push(a(n)),Promise.all(o).then((e=>{let t={},r=e[0],n=e[1];return r&&r.year&&(t[r.year]=r),n&&n.year&&(t[n.year]=n),Promise.resolve(t)}))}))}()}
+
+      
+
+/*********** heatmap_svg.js [f6e16cf46a]  ***********/
+
+function createSVGMap(t,e,n,r,i){const s=n.split(" "),o=r.split(" "),l=i||0;t?4==t.length&&(t=`${t}-12-31`):t=`${(new Date).getFullYear()}-12-31`;let u=new Date(v(new Date(t))),a=e?new Date(v(new Date(e))):e
+;const d="http://www.w3.org/2000/svg",c=30,b=12,f="MP-"+Math.random().toString(16).substring(2),h=f+"days",m=f+"tip",A=u.getDay(),g=u.getTime(),p=364+(7+A-l)%7;var w=function(t){const e=new Date(t)
+;let n=e.getFullYear()-1,r=e.getMonth()+1,i=e.getDate();return`${n}-${r<10?"0"+r:r}-${i<10?"0"+i:i}`}(g);const y=p-Math.floor((g-new Date(w))/864e5)+1,x=p-Math.floor((g-new Date(v(new Date)))/864e5),k=a?p-Math.floor((g-a.getTime())/864e5):-1
+;function C(t){return v(new Date(g-36e5*(p-t)*24))}function v(t){let e=t.getMonth()+1,n=t.getDate();return`${t.getFullYear()}-${e<10?"0"+e:e}-${n<10?"0"+n:n}`}function N(t){const e=document.createElementNS(d,"rect");e.setAttribute("width","12"),
+e.setAttribute("height","12"),e.setAttribute("rx","1"),e.setAttribute("ry","1"),e.setAttribute("fill","#eef7f2");const n=Math.floor(t/7),r=t-7*n,i=12*n+2*n,o=r*b+2*r;e.setAttribute("x",""+i),e.setAttribute("y",""+o),e.dataset.x=i,e.dataset.y=o
+;let l=C(t);e.dataset.ymd=l,e.id="day-item-"+l;let u=l.substring(5,7);if(l.substring(8,10)<="07"&&t%7==0){let e=s[Number(u)-1],n=document.createElementNS(d,"text");n.setAttribute("y","22"),n.setAttribute("x",i),n.textContent=e,
+n.setAttribute("fill",t>x?"#878787":"#113"),n.setAttribute("font-size","13"),n.setAttribute("font-family","monospace"),E.appendChild(n)}return e}const S=document.createElementNS(d,"svg");S.id=f,S.setAttribute("width","787"),
+S.setAttribute("height","148"),S.style.overflow="visible";let D=document.createElementNS(d,"defs")
+;D.innerHTML='\n    <pattern id="fillA" patternUnits="userSpaceOnUse" width="3" height="3">\n        <path d="M 0 0 L 6 6" stroke="#ccc" stroke-width="1"/>\n    </pattern>\n\n    <pattern id="fillB" patternUnits="userSpaceOnUse" width="6" height="6">\n        <path d="M 0 6 L 6 0" stroke="#bbb" stroke-width="1"/>\n    </pattern>\n  ',
+S.appendChild(D);const E=document.createElementNS(d,"g");E.setAttribute("transform","translate(35, 0)"),S.appendChild(E);const M=document.createElementNS(d,"g");function $(t,e){let n=document.createElementNS(d,"text");n.textContent=t,
+n.setAttribute("font-family","monospace"),n.setAttribute("font-size","13"),n.setAttribute("fill","#333"),n.setAttribute("width","45"),n.setAttribute("height","12"),n.setAttribute("x","5");const r=14*e+10;return n.setAttribute("y",""+r),
+M.appendChild(n),n}M.setAttribute("transform","translate(0, 30)"),S.appendChild(M),$(o[(l+1)%7],1),$(o[(l+3)%7],3),$(o[(l+5)%7],5);const F=document.createElementNS(d,"g");F.id=h,F.setAttribute("transform","translate(35, 30)"),S.appendChild(F)
+;const z=document.createDocumentFragment();for(let t=0;t<371;t++){const e=N(t);e&&z.appendChild(e)}F.appendChild(z);const T=document.createElementNS(d,"text");T.setAttribute("y","138 "),T.setAttribute("x","777"),T.setAttribute("fill","#999999"),
+T.setAttribute("font-size","15"),T.setAttribute("font-family","monospace"),T.setAttribute("text-anchor","end"),T.setAttribute("dominant-baseline","middle"),S.appendChild(T);const L=C(y)
+;L.substring(0,4)==t.substring(0,4)?T.textContent=L.substring(0,4):T.textContent=` ~ ${t}`;const U=document.createElementNS(d,"g");U.id=m,S.appendChild(U);var Y={showFlag:0,idx:-1};function B(t,e,n){if(e<0)return Y.showFlag=0,void setTimeout((()=>{
+0==Y.showFlag&&(U.style.display="none")}),50);if(2==Y.showFlag)return;Y.showFlag=1,Y.idx=e,U.innerHTML="",U.style.display="block";const r=n?0:1;n||(n=[{date:t.dataset.ymd}]),U.setAttribute("class","svg-hm-day-tip");var i
+;const s=n.length,o=20+25*s+"",l=document.createDocumentFragment();let u=document.createElementNS(d,"rect");u.setAttribute("fill","#333333cc"),u.setAttribute("height",o),u.setAttribute("rx","5"),u.setAttribute("ry","5"),l.append(u),
+U.onmouseenter=function(){r||(Y.showFlag=2)},U.onmouseleave=function(){Y.showFlag=0,U.style.display="none"};let a=0;n.forEach(((t,e)=>{let n=t.date.substring(5,7),r=t.date.substring(8,10);n=n.startsWith("0")?n.substring(1):n,
+r=r.startsWith("0")?r.substring(1):r;const i=`${n}-${r} ${t.title||""}`;i.length>a&&(a=i.length);const s=document.createElementNS(d,"text");if(s.textContent=i,s.setAttribute("fill","#fff"),s.setAttribute("font-size","16"),
+s.setAttribute("font-family","monospace"),s.setAttribute("x","10"),t.url){const n="http://www.w3.org/1999/xlink",r=document.createElementNS(d,"a");r.setAttributeNS(n,"xlink:href",t.url),r.setAttribute("target","_blank"),
+s.setAttribute("y",""+(10+25*e+18)),r.appendChild(s),l.appendChild(r)}else s.setAttribute("y",""+(10+25*e+15)),l.appendChild(s)})),i=14.55*a+25,u.setAttribute("width",i),U.appendChild(l);const b=e%7,f=35+14*((e-b)/7)+6-i/2,h=c+14*b-o-2
+;U.setAttribute("transform",`translate(${f}, ${h})`)}return{svg:S,updateDays:function(t){const e=t.color||"#40c463",n=document.createElementNS(d,"tspan");n.setAttribute("font-size","12"),n.setAttribute("dy","0"),n.setAttribute("dx","10"),
+n.setAttribute("fill","#888888"),n.setAttribute("font-family","courier"),n.textContent="",T.append(n);let r=0,i=F.childNodes,s=new Array(371);for(let t=0;t<371;t++)s[t]=t;function o(s){let o=i[s];if(o){
+if(s<y||s>p)return void o.setAttribute("display","none");let i=o.dataset.ymd.substring(5,7),l=Number(i)%2,u=function(e,n){let r=n.substring(0,4),i=n.substring(5,7),s=t[r];if(s&&s[i]){let t=s[i].filter((t=>t.date==n));return t&&t.length?t:null}
+return null}(0,o.dataset.ymd);if(u&&u.length&&(r+=u.length,n.textContent=`x ${r}`),!u&&(s>x||s<k))return o.setAttribute("fill",l?"url(#fillB)":"url(#fillA)"),o.onmouseenter=function(){o.setAttribute("stroke","#000000"),
+o.setAttribute("stroke-width","1"),B(o,s,u)},o.onclick=o.onmouseenter,void(o.onmouseleave=function(){o.setAttribute("stroke",""),o.setAttribute("stroke-width",""),B(o,-1)});const a=u&&u.length;let d=e;if(a){let t=u.find((t=>t.color));t&&(d=t.color),
+o.setAttribute("class","svg-day-1"),o.setAttribute("fill",d&&9==d.length?d:1==a?d+"77":2==a?d+"aa":d+"ff"),o.onmouseenter=function(){o.setAttribute("stroke","#000000"),o.setAttribute("stroke-width","1"),B(o,s,u)},o.onclick=o.onmouseenter,
+o.onmouseleave=function(){o.setAttribute("stroke",""),o.setAttribute("stroke-width",""),B(o,-1)}}else{o.onmouseenter=function(){o.setAttribute("stroke","#000000"),o.setAttribute("stroke-width","1"),B(o,s,u)},o.onclick=o.onmouseenter,
+o.onmouseleave=function(){o.setAttribute("stroke",""),o.setAttribute("stroke-width",""),B(o,-1)};let t=o.dataset.ymd;if(t){let e=t.substring(5,7),n=Number(e)%2;o.setAttribute("fill",n?"#edebf0":"#edebf0aa")}else o.setAttribute("fill","#efefef")}}}
+!function(t){let e=t.length;for(;0!=e;){let n=Math.floor(Math.random()*e);e--,[t[e],t[n]]=[t[n],t[e]]}}(s);var l=0;!function t(){if(l<s.length){const n=19;for(var e=0;e++<n;){if(l>=s.length)return;o(s[l++])}requestAnimationFrame(t)}}()}}}
+
+
+
+
+      /*******************************/
+      
+
+      let container =  document.createElement('div')
+      container.className = 'map-container'
+      let divtitle = document.createElement('div')
+      divtitle.className = 'lv-year'
+  
+      container.appendChild(divtitle) 
+      let div = document.createElement('div')
+      div.className = 'heatmap'
+      div.id = heatmapid
+
+      container.appendChild(div)
+      node.parentNode.insertBefore(container,node)
+ 
+      if (!endYear) {
+         let now = new Date()
+         endYear = `${now.getFullYear()}-${(101 + now.getMonth()).toString().substring(1)}-${(100 + now.getDate()).toString().substring(1)}`
+       }else if(('' + endYear).length == 4 ){
+          endYear = '' + endYear + '-12-31'  
+     }
+
+      const WeeKStart =  1 ;//  0 sunday 1 monday 2. tuesday ...
+      const _MonthStr =  'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec';
+      const _showWeek =  'Sun Mon Tue Wed Thu Fri Sat';
+      const svgmap = createSVGMap(endYear,dataObj.beginDate,_MonthStr,_showWeek,WeeKStart)
+      container.appendChild(svgmap.svg);
+      svgmap.updateDays(dataObj)
+  }
+    
+
+  </script>
+   
+  
+
+  
+  
+   <article><div id="loveiContainer">
+ 
+    <!-- <div class='heatmap' id="loveid"> -->
+      
+  </div>
+     
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#mapdata
+#title 日记图
+#color #ef3473
+//#beginDate 2-6
+
+
+2024-1-22 乌廷芳：项少龙的第一个女人，赵国贵族之女，后来成为他的正妻。 #f97d1c
+01-23  乌廷芳：项少龙的第一个女人，赵国贵族之女，后来成为他的正妻。 #1188ffff
+02-4 纪嫣然：纪才女，美貌聪慧，两人情投意合。
+02-4 乌廷芳：纪才女，美貌聪慧，两人情投意合。#2299fe
+3-14 善柔：卫国美女，后来成为项少龙的女人。
+3-24 善柔：卫国美女，后来成为项少龙的女人。
+#color #00eeff
+3-24 琴清：琴艺高手，性格温婉贤淑。
+4-1 赵雅：赵穆的寡嫂，风情万种1
+4-2 赵雅：赵穆的寡嫂，风情万种2
+4-3 赵雅：赵穆的寡嫂，风情万种3
+4-15 赵雅：赵穆的寡嫂，风情万种4 
+#color #1188ff
+5-12 赵倩：赵国公主，楚楚可怜
+#color #ef3473
+5-14 赵雅：赵穆的寡嫂，风情万种，主动追求项少龙。
+5-15 琴清：琴艺高手，性格温婉贤淑。
+5-17~5-23
+
+
+8-1 田盈：齐国田单之女，活泼好动
+8-12 田盈：齐国田单之女，活泼好动
+#color #1188ee
+8-22 田盈：齐国田单之女，活泼好动
+
+9-1 李嫣：原是秦国人，后成为项少龙的红颜知己。
+9-4 乌廷芳
+9-12 朱姬
+2025-4-12 朱姬 #66c18c
+
+2025-5-12 朱姬
+4-2 李嫣
+
+4-11 Y
+4-10 Z
+
+
+ 
+</code></pre></div></div>
+
+<hr />
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#mapdata
+#title 野玫瑰
+#recent 0
+#beginDate 2025-01-2
+2023-2-21 野玫瑰 #ffc18c
+
+2025-3-21  #1177ff
+
+ 
+
+2025-1-15~2025-2-27  指定时间段  2025-1-15~2025-2-27 #fc6315
+
+2025-5-16～  连续七天 2025-4-16～ #ff0000
+
+1-2 #00ff00
+1-4 #00ff00
+1-6 #00ff00
+
+2021-2-1
+4-2~4-4
+
+</code></pre></div></div>
+
+<hr />
+<h1 id="本文markdown-代码">本文markdown 代码</h1>
+<blockquote>
+  <p>引入原文件 会导致计数器 x2  <br />
+颜色也不会这么深<br />
+正常使用不需要 下面的内容</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: lovemap
+permalink: happylife.html
+title: 图 psw:12345
+tags:
+    - happy_life_non     #  password:sex
+    - encrypt1_none       #  passowrd: 12345
+--- 
+
+
+ 
+```  
+#mapdata
+#title 日记图
+#color #ef3473
+//#beginDate 2-6
+
+
+2024-1-22 乌廷芳：项少龙的第一个女人，赵国贵族之女，后来成为他的正妻。 #f97d1c
+01-23  乌廷芳：项少龙的第一个女人，赵国贵族之女，后来成为他的正妻。 #1188ffff
+02-4 纪嫣然：纪才女，美貌聪慧，两人情投意合。
+02-4 乌廷芳：纪才女，美貌聪慧，两人情投意合。#2299fe
+3-14 善柔：卫国美女，后来成为项少龙的女人。
+3-24 善柔：卫国美女，后来成为项少龙的女人。
+#color #00eeff
+3-24 琴清：琴艺高手，性格温婉贤淑。
+4-1 赵雅：赵穆的寡嫂，风情万种1
+4-2 赵雅：赵穆的寡嫂，风情万种2
+4-3 赵雅：赵穆的寡嫂，风情万种3
+4-15 赵雅：赵穆的寡嫂，风情万种4 
+#color #1188ff
+5-12 赵倩：赵国公主，楚楚可怜
+#color #ef3473
+5-14 赵雅：赵穆的寡嫂，风情万种，主动追求项少龙。
+5-15 琴清：琴艺高手，性格温婉贤淑。
+5-17~5-23
+
+
+8-1 田盈：齐国田单之女，活泼好动
+8-12 田盈：齐国田单之女，活泼好动
+#color #1188ee
+8-22 田盈：齐国田单之女，活泼好动
+
+9-1 李嫣：原是秦国人，后成为项少龙的红颜知己。
+9-4 乌廷芳
+9-12 朱姬
+2025-4-12 朱姬 #66c18c
+
+2025-5-12 朱姬
+4-2 李嫣
+
+4-11 Y
+4-10 Z
+
+
+ 
+```
+
+--- 
+
+```
+#mapdata
+#title 野玫瑰
+#recent 0
+#beginDate 2025-01-2
+2023-2-21 野玫瑰 #ffc18c
+
+2025-3-21  #1177ff
+
+ 
+
+2025-1-15~2025-2-27  指定时间段  2025-1-15~2025-2-27 #fc6315
+
+2025-5-16～  连续七天 2025-4-16～ #ff0000
+
+1-2 #00ff00
+1-4 #00ff00
+1-6 #00ff00
+
+2021-2-1
+4-2~4-4
+
+```
+
+
+---- 
+# 本文markdown 代码   
+&gt; 引入原文件 会导致计数器 x2    
+&gt; 颜色也不会这么深  
+&gt; 正常使用不需要 下面的内容  
+
+
+{% include_code /lovemap.md  %}
+
+</code></pre></div></div>
+
+</article>
+
+
+  
+ <script>
+
+/*********** getmapdata.js [7ad9a431dc]  ***********/
+
+!function(){var t=100;function e(t){const e=t.split("-").map(Number);if(3!==e.length)throw new Error(`Invalid date format: ${t}`);const[n,r,l]=e;return new Date(n,r-1,l)}function n(t,e){if(t){const n=t.split("-")
+;if(3==n.length)return`${n[0]}-${n[1].padStart(2,"0")}-${n[2].padStart(2,"0")}`;if(2==n.length)return`${e}-${n[0].padStart(2,"0")}-${n[1].padStart(2,"0")}`}return t}function r(t){let e=t.getMonth()+1,n=t.getDate()
+;return`${t.getFullYear()}-${e<10?"0"+e:e}-${n<10?"0"+n:n}`}function l(t,i,a){if(!t)return null;let o=t.trim();if(!o)return null;if(i&&function(t,e){if(t&&t.startsWith("#")){let n=t.split(" ");if(n.length>=2){let r=n[0].substring(1)
+;if(r)return e[r]=t.substring(r.length+2).trim(),1}}return 0}(o,i))return null;var u=o.split(" "),s=u[0];if(s=s.replace("～","~"),i&&s.indexOf("~")>0){let t=s.split("~"),o=t[0],f=t[1],c=e(n(o,a));if(!c||isNaN(c))return;let d=7;if(f){let t=e(n(f,a))
+;t&&!isNaN(t)&&(d=Math.floor((t.getTime()-c.getTime())/864e5)+1)}else d=Math.floor((Date.now()-c.getTime())/864e5)+1,d>7&&(d=7);const g=u.slice(1).join(" ");let p=[];const m=c.getTime();for(let t=0;t<d;t++){const e=l(r(new Date(m+864e5*t))+" "+g,i,a)
+;e&&p.push(e)}return p.length?p:null}let f="";if(!s)return null;{let t=s.split("-"),e=0,n=0,r=0;if(a&&2==t.length)e=a,n=t[0],r=t[1];else{if(3!=t.length)return;e=t[0],n=t[1],r=t[2]}let l=Number(e),i=Number(n),o=Number(n)
+;if(isNaN(l)||isNaN(o)||isNaN(i)||l<1900||l>2100||i<1||i>12||o<1||o>31)return null;f=e+"-"+n.padStart(2,"0")+"-"+r.padStart(2,"0")}if(!f)return null;var c="";let d;if(u.length>1){c=u.slice(1).join(" ");const t=/#[0-9a-fA-F]{6,8}/;let e=t.exec(c)
+;e&&e.length?(d=e[0],c=c.replace(t,"")):d=i&&i.color||"#40c463"}return d=d||i&&i.color||"#40c463",{date:f,title:c,color:d}}function i(t,e){if(!e)return;let n=e.date.substring(0,4),r=e.date.substring(5,7),l=t.allYear[n];t.allYear[n]=l?l+1:1;let i=t[n]
+;i||(i={},t[n]=i);let a=i[r];a||(a=[],i[r]=a),a.push(e)}function a(e,n){let r={},a={allYear:r},o=0,u=new Date,s=`${u.getFullYear()-1}-${(u.getMonth()+1).toString().padStart(2,"0")}-${u.getDate().toString().padStart(2,"0")}`,f=null
+;if(e.split("\n").forEach((function(t,e){if(0==e)return;let n=l(t,a,f);n&&Array.isArray(n)?n.forEach((t=>{i(a,t),t&&(f=t.date.substring(0,4),t.date>=s&&o++)})):(i(a,n),n&&(f=n.date.substring(0,4),n.date>=s&&o++))})),a.title){
+let t=document.createElement("div");t.className="custom-map-title",t.innerText=a.title||"",n.parentNode.insertBefore(t,n)}let c=Object.keys(r).sort().reverse(),d=a.recent,g=!0;g=d?"1"==d:o&&c.length>1,
+g&&create_heatmap_lv("lmpRecent365"+t++,"",a,"Last 1Y",o,n);for(let e=0;e<c.length;e++){let r=c[e];create_heatmap_lv("lmp"+r+t++,r,a,void 0,void 0,n)}n.style.display="none"}async function o(){let t=document.querySelectorAll("pre > code")
+;if(t&&0!=t.length&&t.length>0)for(let n=0;n<t.length;n++){const r=t[n];var e=r.textContent;if(!e.startsWith("#mapdata"))return;a(e,r.parentNode.parentNode.parentNode)}}o(),window._after_dec_fun=function(){
+let t=document.getElementById("loveiContainer");if(!t){let e=document.getElementById("decryptContent");if(!e)return;t=document.createElement("div"),t.id="loveiContainer",e.insertBefore(t,e.firstChild)}o()},window._after_enc_fun=function(){
+document.getElementById("loveiContainer").innerHTML=""}}();
+</script>
+<footer class="footer">
+      <p> Powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://github.com/vitock/jekyll-zeta">Jekyll-zeta</a>
+     </p>
+    </footer></div>
+</section></main></body>
+</html>
